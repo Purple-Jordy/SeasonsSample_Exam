@@ -1,0 +1,1 @@
+{"invenArrayNumber":[0],"invenItemName":["match"],"invenItemImage":[{"instanceID":28994}],"invenItemText":["성냥"],"invenItemChangeText":[""],"boolList":[true,false,false,false,false,true,true,true,true,true],"floatList":[],"stringList":[""]}

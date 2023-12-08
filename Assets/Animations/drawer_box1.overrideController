@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: drawer_box1
+  m_Controller: {fileID: 9100000, guid: eea92eaf1b9d7614c90020f15c286648, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 6d90c43a8b926a544abefd01890dc7e3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7c736aa4094f70e4e8e0927eebf30741, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 934d25e7dc141d94e80d3e9acec68279, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7f4232ed021799648833c39653ef4afc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ebfdef6e8174ed644ab62e035bc0e0e2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7683d7e142d10534197455d4af4b3e7f, type: 2}

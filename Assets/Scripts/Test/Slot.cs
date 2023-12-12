@@ -48,8 +48,36 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
         // 아이템 이름 보여주기
         //클릭될 때 애니메이션 처음부터 재생
         itemNameUI.GetComponent<Animator>().Play("ShowItemNameAnim", -1, 0f);
+
         //텍스트 이름 설정
-        itemUIText.text = item.itemText;
+        if (item.itemName == "pot")
+        {
+            if (kitchenPot.waterInPot) // 냄비에 물이 들어 있으면
+            {
+                itemUIText.text = item.changeText;
+            }
+            else
+            {
+                itemUIText.text = item.itemText;
+            }
+        }
+        else if (item.itemName == "egg")
+        {
+            if (ovenPot.eggRipe) // 알이 익은 상태
+            {
+                itemUIText.text = item.changeText;
+            }
+            else
+            {
+                itemUIText.text = item.itemText;
+            }
+        }
+        else
+        {
+            itemUIText.text = item.itemText;
+        }
+
+        //itemUIText.text = item.itemText;
 
         //theSaveAndLoad.SaveData();
     }
@@ -85,10 +113,40 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
                 // 아이템 이름 보여주기
                 //클릭될 때 애니메이션 처음부터 재생
                 itemNameUI.GetComponent<Animator>().Play("ShowItemNameAnim", -1, 0f);
+
                 //텍스트 이름 설정
-                itemUIText.text = item.itemText;
+                //itemUIText.text = item.itemText;
+                if (item.itemName == "pot")
+                {
+                    if (kitchenPot.waterInPot) // 냄비에 물이 들어 있으면
+                    {
+                        itemUIText.text = item.changeText;
+                    }
+                    else
+                    {
+                        itemUIText.text = item.itemText;
+                    }
+                }
+                else if (item.itemName == "egg")
+                {
+                    if (ovenPot.eggRipe) // 알이 익은 상태
+                    {
+                        itemUIText.text = item.changeText;
+                    }
+                    else
+                    {
+                        itemUIText.text = item.itemText;
+                    }
+                }
+                else
+                {
+                    itemUIText.text = item.itemText;
+                }
+
 
                 chooseItem = true;
+
+
             }
             else //선택된 상태면 꺼주기
             {
@@ -127,8 +185,35 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
         // 아이템 이름 보여주기
         //클릭될 때 애니메이션 처음부터 재생
         itemNameUI.GetComponent<Animator>().Play("ShowItemNameAnim", -1, 0f);
+
         //텍스트 이름 설정
-        itemUIText.text = item.itemText;
+        //itemUIText.text = item.itemText;
+        if (item.itemName == "pot")
+        {
+            if (kitchenPot.waterInPot) // 냄비에 물이 들어 있으면
+            {
+                itemUIText.text = item.changeText;
+            }
+            else
+            {
+                itemUIText.text = item.itemText;
+            }
+        }
+        else if (item.itemName == "egg")
+        {
+            if (ovenPot.eggRipe) // 알이 익은 상태
+            {
+                itemUIText.text = item.changeText;
+            }
+            else
+            {
+                itemUIText.text = item.itemText;
+            }
+        }
+        else
+        {
+            itemUIText.text = item.itemText;
+        }
 
         pre.ClearSlot();
 

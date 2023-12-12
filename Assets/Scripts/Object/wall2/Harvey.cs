@@ -53,7 +53,11 @@ public class Harvey : MonoBehaviour, IInteractable
         {
             // 음식이 있고 음식을 먹었다면
             //알의 애니메이션 재생
-            StartCoroutine(eggOnTheGround());
+            if (egg != null)
+            {
+                StartCoroutine(eggOnTheGround());
+            }
+           
             
             
             //알을 아직 획득하지 않은 상태에 하비를 눌렀으면 하비 애니메이션 재생
@@ -82,7 +86,8 @@ public class Harvey : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(1f);
 
         //egg.GetComponent<Animator>().SetBool("OnGround", true);
-        egg.GetComponent<Animator>().enabled =false;
+
+        egg.GetComponent<Animator>().enabled = false;
         eggOnGround = true;
 
     }

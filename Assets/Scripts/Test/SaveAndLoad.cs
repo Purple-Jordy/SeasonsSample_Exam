@@ -63,12 +63,24 @@ public class SaveAndLoad : MonoBehaviour
         saveData.boolList.Add(Photo.getPhoto3);
         saveData.boolList.Add(Photo.getPhoto4);
         saveData.boolList.Add(LightSwitch.lightOn);
+        saveData.boolList.Add(kitchenPot.potOnSink);
+        saveData.boolList.Add(ovenPot.potHere);
+        saveData.boolList.Add(ovenPot.eggHere);
+        saveData.boolList.Add(kitchenPot.waterInPot);
+        saveData.boolList.Add(EggCup.eggHere);
+        saveData.boolList.Add(EggCup.eggDrop);
      
 
 
         saveData.stringList.Clear();
 
         saveData.stringList.Add(Feeding.spriteName);
+
+
+
+        saveData.floatList.Clear();
+
+        saveData.floatList.Add(EggCup.eggNum);
 
 
 
@@ -112,10 +124,20 @@ public class SaveAndLoad : MonoBehaviour
             Photo.getPhoto3 = saveData.boolList[7];
             Photo.getPhoto4 = saveData.boolList[8];
             LightSwitch.lightOn = saveData.boolList[9];
+            kitchenPot.potOnSink = saveData.boolList[10];
+            ovenPot.potHere = saveData.boolList[11];
+            ovenPot.eggHere = saveData.boolList[12];
+            kitchenPot.waterInPot = saveData.boolList[13];
+            EggCup.eggHere = saveData.boolList[14];
+            EggCup.eggDrop = saveData.boolList[15];
 
 
 
             Feeding.spriteName = saveData.stringList[0];
+
+
+            EggCup.eggNum = saveData.floatList[0];
+
 
 
             Debug.Log("로드 완료");

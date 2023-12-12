@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: pot
   itemImage: {fileID: 21300000, guid: 0ee3c034358f99241944818f8e5c6d45, type: 3}
   itemText: "\uBE48 \uB0C4\uBE44"
-  changeText: 
+  changeText: "\uBB3C\uC774 \uB4E0 \uB0C4\uBE44"

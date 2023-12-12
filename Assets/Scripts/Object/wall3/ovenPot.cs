@@ -30,18 +30,20 @@ public class ovenPot : MonoBehaviour, IInteractable
     #endregion
 
     private DisplayImage displayImage;
+    private SaveAndLoad theSaveAndLoad;
 
-    private kitchenPot KitchenPot; // 싱크대에 있을 때 냄비
+    //private kitchenPot KitchenPot; // 싱크대에 있을 때 냄비
     private Animator valveAnim; // 밸브 켜짐 확인 유무
     public GameObject PotOnOven; // wall3 상태에서 보이는 냄비
     public GameObject whiteSmoke; // 흰 연기
     public GameObject blackSmoke; // 검정 연기
 
     public static bool eggHere = false; // 알이 냄비에 들어가 있는지 유무
-    public static bool potHere = false;
+    public static bool potHere = false; // 냄비가 가스레인지 위에 있는지
     public bool boilPot = false; // 냄비가 끓고 있는지 
+    public static bool eggRipe = false; // 알이 익었는지
 
-    public Item item1;
+    public Item item1; 
     public Item item2;
 
 
@@ -58,11 +60,12 @@ public class ovenPot : MonoBehaviour, IInteractable
         situationText = situationUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         displayImage = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        theSaveAndLoad = FindObjectOfType<SaveAndLoad>();
 
-        KitchenPot = GameObject.Find("kitchenPot").GetComponent<kitchenPot>();
+        //KitchenPot = GameObject.Find("kitchenPot").GetComponent<kitchenPot>();
         valveAnim = GameObject.Find("GrayValve").transform.GetChild(0).GetComponent<Animator>();
 
-        this.GetComponent<SpriteRenderer>().enabled = potHere;
+        //this.GetComponent<SpriteRenderer>().enabled = potHere;
     }
 
 
@@ -84,14 +87,14 @@ public class ovenPot : MonoBehaviour, IInteractable
 
 
         //냄비가 가스레인지 위에 있음
-        if (this.GetComponent<SpriteRenderer>().enabled == true)
+        if (potHere == true)
         { 
             //냄비를 가스레인지 위에 두고 화면을 벗어날 경우
-            PotOnOven.SetActive(true);
-            
+            //PotOnOven.SetActive(true);
+            this.GetComponent<SpriteRenderer>().enabled = true; // 냄비 이미지 띄우기
 
-             // 물 끓는 상태에 알이 있으면 
-             if (boilPot == true && eggHere == true)
+            // 물 끓는 상태에 알이 있으면 
+            if (boilPot == true && eggHere == true)
              {
                 //검정 연기 나옴
                 blackSmoke.SetActive(true);
@@ -111,10 +114,10 @@ public class ovenPot : MonoBehaviour, IInteractable
         }
         else // 냄비가 가스레인지 위에 없으면 화면 바깥의 냄비도 꺼준다
         {
-            PotOnOven.SetActive(false);
+            //PotOnOven.SetActive(false); 
+            this.GetComponent<SpriteRenderer>().enabled = false; // 냄비 이미지 띄우기
         }
 
-        
     }
 
 
@@ -135,8 +138,9 @@ public class ovenPot : MonoBehaviour, IInteractable
             if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name == UnlockItem1
                 && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
             {
-                    //인벤토리에 있는 냄비 사용
-                    UseItem(); // 냄비 올려둠
+                //인벤토리에 있는 냄비 사용
+                UseItem(); // 냄비 올려둠
+                potHere = true;
 
             } // 선택한 슬롯이 성냥이라면
             else if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name == UnlockItem2
@@ -169,7 +173,7 @@ public class ovenPot : MonoBehaviour, IInteractable
                 // 가스 밸브가 켜져 있으면
                 if (valveAnim.GetBool("ValveTurnOn") == true)
                 {
-                    if(KitchenPot.waterInPot == true)
+                    if(kitchenPot.waterInPot == true)
                     {
                         boilPot = true;
                     }
@@ -193,21 +197,24 @@ public class ovenPot : MonoBehaviour, IInteractable
                 {
                     // 가스 불이 켜져 있고 냄비 안에 물이 있다면
                     if (this.transform.GetChild(0).GetComponent<Animator>().GetBool("hasGas") == true
-                        && KitchenPot.waterInPot == true)
+                        && kitchenPot.waterInPot == true)
                     {
                         //익은 알 획득
+                        eggRipe = true;
                         // 물 끓는 애니메이션 추가
-                        itemText.text = item2.changeText; // 익은 알
-                        ItemPickUp(item2);
+
+                        //itemText.text = item2.changeText; // 익은 알
+                        
                         eggHere = false;
+                        ItemPickUp(item2);
                     }
                     else
                     {
                         // 익지 않은 알 획득
-                        itemText.text = item2.changeText; // 익은 알
-
-                        ItemPickUp(item2);
+                        //itemText.text = item2.itemText; // 익지 않은 알
+                        
                         eggHere = false;
+                        ItemPickUp(item2);
                     }
 
                 }
@@ -239,20 +246,22 @@ public class ovenPot : MonoBehaviour, IInteractable
                         }
                         else //냄비가 안 데워진 상태라면
                         {
-                                if (KitchenPot.waterInPot == true)
-                                {
-                                    itemText.text = item1.changeText; //물이 든 냄비
+                            /*if (KitchenPot.waterInPot == true)
+                            {
+                                itemText.text = item1.changeText; //물이 든 냄비
                             }
-                                else
-                                {
+                            else
+                            {
                                 itemText.text = item1.itemText; //빈 냄비
-                            }
+                            }*/
 
-                                // 냄비 획득
-                                ItemPickUp(item1);
-
+                                
                                 //냄비 없애기
-                                this.GetComponent<SpriteRenderer>().enabled = false;
+                                //this.GetComponent<SpriteRenderer>().enabled = false;
+                                potHere = false;
+
+                            // 냄비 획득
+                            ItemPickUp(item1);
                         }
                             
                         
@@ -268,25 +277,27 @@ public class ovenPot : MonoBehaviour, IInteractable
 
 
 
-    // 픽업 함수
+    // 픽업 함수(아이템 획득)
     public void ItemPickUp(Item _item)
     {
         Inventory.Instance.AcquireItem(_item);
+        
     }
 
-
+    // 아이템 사용
     public void UseItem()
     {
-        if (KitchenPot.waterInPot == true )
+        /*if (KitchenPot.waterInPot == true )
         {
             itemText.text = item1.changeText; //물이 든 냄비
 
-        }
+        }*/
 
         inventory.currentSelectedSlot.GetComponent<Slot>().ClearSlot(); //슬롯 비우기
 
-        this.GetComponent<SpriteRenderer>().enabled = true; // 냄비 이미지 띄우기
+        //this.GetComponent<SpriteRenderer>().enabled = true; // 냄비 이미지 띄우기
 
+        
     }
 
 }

@@ -49,6 +49,7 @@ public class fireplace : MonoBehaviour, IInteractable
         theSaveAndLoad = FindObjectOfType<SaveAndLoad>();
     }
 
+
     private void Update()
     {
         if (woodHere)

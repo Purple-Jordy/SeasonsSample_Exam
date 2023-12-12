@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: egg
   itemImage: {fileID: 21300000, guid: 7556525b34f797849a57988195090119, type: 3}
   itemText: "\uC775\uC9C0 \uC54A\uC740 \uC54C"
-  changeText: 
+  changeText: "\uC775\uC740 \uC54C"

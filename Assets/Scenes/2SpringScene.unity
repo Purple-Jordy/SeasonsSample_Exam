@@ -2899,8 +2899,8 @@ MonoBehaviour:
   whiteSmoke: {fileID: 844168503}
   blackSmoke: {fileID: 1323142515}
   boilPot: 0
-  item1: {fileID: 0}
-  item2: {fileID: 0}
+  item1: {fileID: 11400000, guid: 448193e69d61ee1429617e8f70035396, type: 2}
+  item2: {fileID: 11400000, guid: fcb12dac9f5034b44aafc9c2881b3a0b, type: 2}
 --- !u!1 &375876884
 GameObject:
   m_ObjectHideFlags: 0
@@ -20557,6 +20557,10 @@ MonoBehaviour:
   sinkDoor2Close: {fileID: 645882506}
   sinkDoor1Open: {fileID: 756715490}
   sinkDoor2Open: {fileID: 1795561959}
+  OvenPot: {fileID: 1163821189}
+  KitchenPot: {fileID: 1376797836}
+  eggCup: {fileID: 666135205}
+  blackCube: {fileID: 1668810614}
 --- !u!1 &1420826986
 GameObject:
   m_ObjectHideFlags: 0
@@ -24664,7 +24668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1873304680
 Transform:
   m_ObjectHideFlags: 0
@@ -25046,8 +25050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnlockItem: pot
   PotInkitchen: {fileID: 1376797836}
-  waterInPot: 0
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 448193e69d61ee1429617e8f70035396, type: 2}
 --- !u!1 &1935845742
 GameObject:
   m_ObjectHideFlags: 0
@@ -25510,7 +25513,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 61c6c044d87b663448bb3d0561a520e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f492a1dbf48cf444eb9f0dbaaa5363cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

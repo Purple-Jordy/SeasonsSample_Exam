@@ -9,11 +9,13 @@ public class sinkHandleRight : MonoBehaviour, IInteractable
     private SpriteRenderer spriteRenderer;
     public bool waterOn = false;
 
+    private SaveAndLoad theSaveAndLoad;
 
     void Start()
     {
         animator = GetComponentInParent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        theSaveAndLoad = FindObjectOfType<SaveAndLoad>();
     }
 
 
@@ -25,6 +27,7 @@ public class sinkHandleRight : MonoBehaviour, IInteractable
         // 손잡이 모양 변경
         StartCoroutine(sinkAnim());
 
+        
     }
 
     IEnumerator sinkAnim()
@@ -42,6 +45,12 @@ public class sinkHandleRight : MonoBehaviour, IInteractable
         {
             this.spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/sink7");
             waterOn = true;
+
+            //물을 틀면 저장
+            if (kitchenPot.potOnSink)
+            {
+                theSaveAndLoad.SaveData();
+            }
         }
     }
 

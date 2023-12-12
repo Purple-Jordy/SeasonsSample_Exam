@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 
 public class kitchenPot : MonoBehaviour, IInteractable
@@ -15,13 +16,13 @@ public class kitchenPot : MonoBehaviour, IInteractable
     private TextMeshProUGUI itemText;
     private GameObject itemNameUI;
 
-    //private bool waterInPot = false;
 
     //
     public string UnlockItem;
     //잠금해제 아이템(이 아이템이 있어야 잠금해제)
 
     private Inventory inventory;
+    private SaveAndLoad theSaveAndLoad;
 
     private GameObject situationUI;
     private Animator animator;
@@ -30,7 +31,8 @@ public class kitchenPot : MonoBehaviour, IInteractable
     private sinkWater sinkWater;
     public GameObject PotInkitchen;
 
-    public bool waterInPot;
+    public static bool waterInPot;
+    public static bool potOnSink = false;
 
     public Item item;
 
@@ -41,6 +43,7 @@ public class kitchenPot : MonoBehaviour, IInteractable
         itemText = itemNameUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         inventory = Inventory.Instance;
+        theSaveAndLoad = FindObjectOfType<SaveAndLoad>();
 
         situationUI = GameObject.Find("situationUI");
         animator = situationUI.GetComponent<Animator>();
@@ -58,27 +61,34 @@ public class kitchenPot : MonoBehaviour, IInteractable
             // 냄비 안에 물을 부으면
             if (sinkWater.waterFlow == true)
             {
-                itemText.text = item.changeText; //물이 든 냄비
+                //itemText.text = item.changeText; //물이 든 냄비
                 waterInPot = true;
             }
 
             //냄비를 싱크대 위에 두고 화면을 벗어날 경우
-            PotInkitchen.SetActive(true);
+            //PotInkitchen.SetActive(true);
         }
-        else
+        else //냄비를 획득한 경우
         {
-            PotInkitchen.SetActive(false);
+            //PotInkitchen.SetActive(false);
         }
 
 
         //수전과 interaction이 겹치기 때문에 냄비를 선택했을 때만 박스콜라이더가 보이게 한다.  
         
-            if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name == UnlockItem
+        if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name == UnlockItem
             && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
-            {
-                this.GetComponent<BoxCollider2D>().enabled = true;
-            }
-        
+        {
+            this.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+
+        if (potOnSink) //저장 관련
+        {
+            this.GetComponent<SpriteRenderer>().enabled = true;
+            this.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
 
         
     }
@@ -100,7 +110,8 @@ public class kitchenPot : MonoBehaviour, IInteractable
                {
                     //인벤토리에 있는 냄비 사용
                     UseItem();
-               }
+                    potOnSink = true;
+                }
                 
             }
         }
@@ -108,13 +119,14 @@ public class kitchenPot : MonoBehaviour, IInteractable
         {
             // 냄비 획득
             ItemPickUp();
+            potOnSink = false;
         }
 
     }
 
 
 
-    // 픽업 함수
+    // 픽업 함수(아이템 획득)
     public void ItemPickUp()
     {
 
@@ -125,11 +137,18 @@ public class kitchenPot : MonoBehaviour, IInteractable
         this.GetComponent<BoxCollider2D>().enabled = false;
 
         inventory.currentSelectedSlot = inventory.previousSelectedSlot;
-        inventory.previousSelectedSlot = inventory.currentSelectedSlot;    
-        
+        inventory.previousSelectedSlot = inventory.currentSelectedSlot;
+
+
+        /*if (waterInPot == true)
+        {
+            itemText.text = item.changeText; //물이 든 냄비
+
+        }*/
     }
 
 
+    // 아이템 사용
     public void UseItem()
     {
         inventory.currentSelectedSlot.GetComponent<Slot>().ClearSlot(); //슬롯 비우기

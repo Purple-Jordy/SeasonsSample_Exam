@@ -9,11 +9,13 @@ public class sinkHandleLeft : MonoBehaviour, IInteractable
     private SpriteRenderer spriteRenderer;
     public bool waterOn = false;
 
+    private SaveAndLoad theSaveAndLoad;
 
     void Start()
     {
         animator = GameObject.Find("sink").GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        theSaveAndLoad = FindObjectOfType<SaveAndLoad>();
     }
 
 
@@ -43,6 +45,12 @@ public class sinkHandleLeft : MonoBehaviour, IInteractable
         {
             this.spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/sink6");
             waterOn = true;
+
+            //물을 틀면 저장
+            if (kitchenPot.potOnSink)
+            {
+                theSaveAndLoad.SaveData();
+            }
         }
     }
 

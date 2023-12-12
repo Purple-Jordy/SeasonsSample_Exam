@@ -23,7 +23,7 @@ public class EggCup : MonoBehaviour, IInteractable
     #endregion
 
     private Inventory inventory;
-
+    private SaveAndLoad theSaveAndLoad;
 
     // 상호작용할 아이템 이름
     public string UnlockItem1; //egg
@@ -43,11 +43,13 @@ public class EggCup : MonoBehaviour, IInteractable
     public static float eggNum = 1;
     private float wait = 0;
     public static bool eggDrop = false;
+    public static bool blackCubeHere = false;
 
 
     private void Start()
     {
         inventory = Inventory.Instance;
+        theSaveAndLoad = FindObjectOfType<SaveAndLoad>();
         //displayImage = GameObject.Find("displayImage").GetComponent<DisplayImage>();
 
         itemNameUI = GameObject.Find("ItemNameUI");
@@ -64,34 +66,39 @@ public class EggCup : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        // wall3에 있는 달걀
-        if (eggHere == true)
-        {
-            eggCup1.GetComponent<SpriteRenderer>().enabled = true;
-        }
-        else
-        {
-            eggCup1.GetComponent<SpriteRenderer>().enabled = false;
-        }
-
+       
 
         //만들어진 큐브가 사라지면 
-        if(blackCube == null)
+        if (blackCube == null)
         {
-            eggDrop = true;
+            eggDrop = true; // 큐브가 만들어졌다가 사라짐 - 나비 효과
+            blackCubeHere = false;
             blackCube1.SetActive(false); //wall3에 있는 큐브 없애주기
             blackCubeBackground.SetActive(false); //큐브 배경 없애주기
+            
+        }
+        else // blackCube != null
+        {
+            if (blackCubeHere)
+            {
+                blackCube.SetActive(true); //블랙큐브 등장
+                blackCubeBackground.SetActive(true); //큐브 배경도 켜주기
+            }
+            
+        }
+
+        // 알이 컵 위에 있으면
+        if(eggHere == true)
+        {
+            egg.SetActive(true);
+            egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
         }
         else
         {
-            // 큐브가 나타나면 바깥의 큐브도 켜준다
-            if (blackCube.activeSelf)
-            {
-                blackCube1.SetActive(true);
-            }
+            egg.SetActive(false);
         }
-        
-    
+
+
         //클릭 허용
         ResetClick();
 
@@ -119,7 +126,7 @@ public class EggCup : MonoBehaviour, IInteractable
         else // 알이 켜져 있다면
         {
             // 알이 익은 상태라면
-            if(itemText.text == "익은 알")
+            if(ovenPot.eggRipe)
             {
 
                 // 숟가락을 선택한 상태라면
@@ -133,9 +140,10 @@ public class EggCup : MonoBehaviour, IInteractable
                         eggNum += 1;
                         egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
+                        theSaveAndLoad.SaveData();
                         StartCoroutine(camShake()); //카메라 흔들림
 
-                        butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 1; //나비 생성
+                        //butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 1; //나비 생성
                         wait = 1f; //1초동안 클릭 제한
                     }
                     else if (eggNum == 4)
@@ -143,9 +151,10 @@ public class EggCup : MonoBehaviour, IInteractable
                         eggNum += 1;
                         egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
+                        theSaveAndLoad.SaveData();
                         StartCoroutine(camShake()); //카메라 흔들림
 
-                        butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 4; //나비 3마리 더 등장
+                        //butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 4; //나비 3마리 더 등장
                         wait = 1f; //1초동안 클릭 제한
                     }
                     else if(eggNum == 5)
@@ -153,13 +162,15 @@ public class EggCup : MonoBehaviour, IInteractable
                         eggNum += 1; //egg6화면
                         egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
+                        
                         StartCoroutine(camShake()); // 카메라 흔들림
-                        
-                        blackCube.SetActive(true); //블랙큐브 등장
-                        blackCubeBackground.SetActive(true); //큐브 배경도 켜주기
 
-                        butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 30; //나비 총출동
-                        
+                        blackCubeHere = true;
+                        //blackCube.SetActive(true); //블랙큐브 등장
+                        //blackCubeBackground.SetActive(true); //큐브 배경도 켜주기
+
+                        //butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 30; //나비 총출동
+                        theSaveAndLoad.SaveData();
 
                     }
                     else if(eggNum == 6)
@@ -173,6 +184,7 @@ public class EggCup : MonoBehaviour, IInteractable
                         // 알 뿌셔
                         egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
+                        theSaveAndLoad.SaveData();
                     }
 
 
@@ -180,15 +192,16 @@ public class EggCup : MonoBehaviour, IInteractable
                 else // 숟가락을 선택 안 함
                 {
                     // 알 뿌시기 시작하면 집을 수 없음
-                    if (eggNum > 0)
+                    if (eggNum > 1)
                     {
                         //반응 없음
                     }
                     else
                     {
                         // 알 집기 
-                        ItemPickUp();
                         eggHere = false;
+                        ItemPickUp();
+                        
                     }
                 }
 
@@ -205,6 +218,7 @@ public class EggCup : MonoBehaviour, IInteractable
                 else if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name != UnlockItem2
                     && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
                 {
+                    // 숟가락이 아닌 걸 선택한 상태로 클릭하면
                     // 아무 일도 일어나지 않는다
                 }
                 else
@@ -226,7 +240,7 @@ public class EggCup : MonoBehaviour, IInteractable
     {
         inventory.currentSelectedSlot.GetComponent<Slot>().ClearSlot(); // 슬롯비우기 
 
-        egg.SetActive(true); //알이 있으니 스프라이트 켜주기
+        //egg.SetActive(true); //알이 있으니 스프라이트 켜주기
 
     }
 
@@ -234,7 +248,7 @@ public class EggCup : MonoBehaviour, IInteractable
     public void ItemPickUp()
     {
         Inventory.Instance.AcquireItem(item);
-        egg.SetActive(false);
+        //egg.SetActive(false);
     }
     
 

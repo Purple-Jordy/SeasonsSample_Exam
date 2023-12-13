@@ -4,8 +4,23 @@ using UnityEngine;
 
 public class MousePointer : MonoBehaviour
 {
+    public static MousePointer instance;
+
     public GameObject circle;
     private Animator animator;
+
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
+
 
     private void Start()
     {

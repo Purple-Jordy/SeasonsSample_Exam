@@ -13,6 +13,7 @@ public class SelectSpring : MonoBehaviour
 
     public void Options()
     {
+        PlayerPrefs.SetString("previoudScene", "2SelectSpring");
         fader.FadeTo("1Options");
     }
 

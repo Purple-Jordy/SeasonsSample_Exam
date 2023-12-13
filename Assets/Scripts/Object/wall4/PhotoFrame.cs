@@ -11,9 +11,9 @@ public class PhotoFrame : MonoBehaviour, IInteractable
     public bool frameDown = false;
 
     // 큐브 확인
-    private MakeCube makeCube;
+    //private MakeCube makeCube;
     // 벽난로 불 확인
-    private fireplace fireplace;
+    //private fireplace fireplace;
 
     private GameObject photo;
 
@@ -22,8 +22,8 @@ public class PhotoFrame : MonoBehaviour, IInteractable
     {
         animator = GetComponent<Animator>();
 
-        fireplace = GameObject.Find("fireplace").GetComponent<fireplace>();
-        makeCube = GameObject.Find("MakeCube").GetComponent<MakeCube>();
+        //fireplace = GameObject.Find("fireplace").GetComponent<fireplace>();
+        //makeCube = GameObject.Find("MakeCube").GetComponent<MakeCube>();
 
         photo = this.transform.GetChild(0).gameObject;
     }
@@ -36,7 +36,7 @@ public class PhotoFrame : MonoBehaviour, IInteractable
         if (currentDisplay.CurrentState == DisplayImage.State.zoom)
         {
             //큐브랑 불이 둘 다 있으면 화면은 계속 내려가 있는 상태
-            if(fireplace.IsFire == true && makeCube.cubeHere == true)
+            if(fireplace.IsFire == true && MakeCube.cubeHere == true)
             {
                 if (animator.GetBool("IsDown") == false)
                 {

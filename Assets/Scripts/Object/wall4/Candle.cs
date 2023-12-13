@@ -10,6 +10,9 @@ public class Candle : MonoBehaviour, IInteractable
     private Inventory inventory;
     private SaveAndLoad theSaveAndLoad;
 
+    // 줌 상태 확인
+    private DisplayImage currentDisplay;
+
     private Animator animator;
     private Animator fireAnim;
 
@@ -25,14 +28,26 @@ public class Candle : MonoBehaviour, IInteractable
 
         inventory = Inventory.Instance;
         theSaveAndLoad = FindObjectOfType<SaveAndLoad>();
+        currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
     }
 
 
     private void Update()
     {
+        // 저장 관련 : 촛불에 불을 붙였음
         if (candleFire)
         {
             fireAnim.enabled = true;
+        }
+
+        //줌 화면일때만 콜라이더를 켜준다
+        if (currentDisplay.CurrentState == DisplayImage.State.zoom)
+        {
+            this.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else // 줌이 아니면 꺼준다
+        {
+            this.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 

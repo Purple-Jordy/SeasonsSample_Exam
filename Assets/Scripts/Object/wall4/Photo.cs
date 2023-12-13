@@ -33,9 +33,9 @@ public class Photo : MonoBehaviour, IInteractable
     private Animator animator;
 
     // 벽난로 불 확인
-    private fireplace fireplace;
+    //private fireplace fireplace;
     // 큐브 확인
-    private MakeCube makeCube;
+   // private MakeCube makeCube;
 
     // 사진 확인
     public bool allPhoto = false;
@@ -43,7 +43,7 @@ public class Photo : MonoBehaviour, IInteractable
     public SceneFader fader;
 
     [SerializeField]
-    private string loadToScene = "MainMenu";
+    private string loadToScene = "3SelectSummer";
 
     //사진
     private GameObject photo1;
@@ -78,8 +78,8 @@ public class Photo : MonoBehaviour, IInteractable
 
         animator = GetComponent<Animator>();
 
-        fireplace = GameObject.Find("fireplace").GetComponent<fireplace>();
-        makeCube = GameObject.Find("MakeCube").GetComponent<MakeCube>();
+        //fireplace = GameObject.Find("fireplace").GetComponent<fireplace>();
+        //makeCube = GameObject.Find("MakeCube").GetComponent<MakeCube>();
 
         photo1 = this.transform.GetChild(0).gameObject;
         photo3 = this.transform.GetChild(1).gameObject;
@@ -106,7 +106,7 @@ public class Photo : MonoBehaviour, IInteractable
         else //화면이 줌 상태에 액자가 down 상태면
         {
             // 벽난로의 불이 켜지고 큐브도 있으면
-            if (fireplace.IsFire == true && makeCube.cubeHere == true)
+            if (fireplace.IsFire == true && MakeCube.cubeHere == true)
             {
                 // 사진의 애니메이션도 켜준다
                 animator.SetBool("photoFire", true);
@@ -203,7 +203,7 @@ public class Photo : MonoBehaviour, IInteractable
 
 
         //만약 사진 완성 & 불 있음 & 큐브 있음 (클리어 조건 달성!)
-        if (allPhoto == true && fireplace.IsFire == true && makeCube.cubeHere == true)
+        if (allPhoto == true && fireplace.IsFire == true && MakeCube.cubeHere == true)
         {
             // 첫번째 클릭 이벤트
             if (currentObject == null)

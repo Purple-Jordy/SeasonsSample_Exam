@@ -15,7 +15,7 @@ public class MakeCube : MonoBehaviour, IInteractable
     private Inventory inventory;
 
     // 벽난로 불 확인
-    private fireplace fireplace;
+    //private fireplace fireplace;
 
     // 줌 상태 확인
     private DisplayImage currentDisplay;
@@ -26,7 +26,7 @@ public class MakeCube : MonoBehaviour, IInteractable
     // 상호작용할 아이템 이름
     public string UnlockItem;
 
-    public bool cubeHere = false;
+    public static bool cubeHere = false;
 
 
     void Start()
@@ -38,7 +38,7 @@ public class MakeCube : MonoBehaviour, IInteractable
         inventory = Inventory.Instance;
 
         currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
-        fireplace = GameObject.Find("fireplace").GetComponent<fireplace>();
+        //fireplace = GameObject.Find("fireplace").GetComponent<fireplace>();
 
         animator = GetComponent<Animator>();
 
@@ -50,8 +50,15 @@ public class MakeCube : MonoBehaviour, IInteractable
         //줌 화면이 아니면
         if (currentDisplay.CurrentState != DisplayImage.State.zoom) 
         {
-            //기본 모습으로
+            if (cubeHere == true)
+            {
+                animator.SetBool("cubeHere", true);
+
+            }
+
+            //불 애니메이션은 꺼주기
             animator.SetBool("IsFire", false);
+            
 
         }
         else //줌 상태
@@ -63,11 +70,10 @@ public class MakeCube : MonoBehaviour, IInteractable
                 animator.SetBool("IsFire", true);
             }
 
-            //줌 화면이고 큐브가 있으면 구멍에 큐브 애니메이션 재생
             if (cubeHere == true)
             {
                 animator.SetBool("cubeHere", true);
-                
+
             }
 
             // IsFire, cubeHere 둘 다 true라서 불+큐브 애니메이션 재생

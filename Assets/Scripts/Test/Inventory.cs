@@ -210,8 +210,15 @@ public class Inventory : MonoBehaviour
         {
             if (slot[i].item == null)
             {
+               
+                if(i > 5) //2번째 칸에 있는 아이템이면 인벤토리 애니메이션 재생
+                {
+                    animator.SetTrigger("backButtonOn");
+                }
+
                 slot[i].AddItem(_item);
                 theSaveAndLoad.SaveData();
+
                 return;
             }
         }
@@ -228,7 +235,7 @@ public class Inventory : MonoBehaviour
         {
             if (items[i].itemName == _itemName)
             {
-                slot[_arrayNum].AddItem(items[i]);
+                slot[_arrayNum].LoadItem(items[i]);
             }
                 
         }

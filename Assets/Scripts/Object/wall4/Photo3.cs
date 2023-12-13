@@ -30,10 +30,19 @@ public class Photo3 : ItemPickUp
     // 클릭하면 아이템 픽업
     public override void interact(DisplayImage currentDisplay)
     {
-        base.interact(currentDisplay);
-        animator.SetTrigger("Click");
+        //base.interact(currentDisplay);
+        StartCoroutine(GetPhoto1());
     }
 
+
+    IEnumerator GetPhoto1()
+    {
+        animator.SetTrigger("Click");
+
+        yield return new WaitForSeconds(1f);
+
+        CanPickUp();
+    }
    
 }
 

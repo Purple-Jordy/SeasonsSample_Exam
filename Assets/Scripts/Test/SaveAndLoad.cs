@@ -33,7 +33,7 @@ public class SaveAndLoad : MonoBehaviour
         saveData.invenItemName.Clear();
         saveData.invenItemImage.Clear();
         saveData.invenItemText.Clear();
-        saveData.invenItemChangeText.Clear();
+        //saveData.invenItemChangeText.Clear();
 
 
         // 인벤토리 정보 저장
@@ -47,7 +47,7 @@ public class SaveAndLoad : MonoBehaviour
                 
                 saveData.invenItemImage.Add(slots[i].item.itemImage);
                 saveData.invenItemText.Add(slots[i].item.itemText);
-                saveData.invenItemChangeText.Add(slots[i].item.changeText);
+                //saveData.invenItemChangeText.Add(slots[i].item.changeText);
             }
         }
 
@@ -69,6 +69,7 @@ public class SaveAndLoad : MonoBehaviour
         saveData.boolList.Add(kitchenPot.waterInPot);
         saveData.boolList.Add(EggCup.eggHere);
         saveData.boolList.Add(EggCup.eggDrop);
+        saveData.boolList.Add(MakeCube.cubeHere);
      
 
 
@@ -130,6 +131,7 @@ public class SaveAndLoad : MonoBehaviour
             kitchenPot.waterInPot = saveData.boolList[13];
             EggCup.eggHere = saveData.boolList[14];
             EggCup.eggDrop = saveData.boolList[15];
+            MakeCube.cubeHere = saveData.boolList[16];
 
 
 

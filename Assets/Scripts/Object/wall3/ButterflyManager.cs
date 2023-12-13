@@ -18,8 +18,8 @@ public class ButterflyManager : ButterflyController
 
         displayImage = GameObject.Find("displayImage").GetComponent<DisplayImage>();
         
-        
     }
+
 
     public override void Update()
     {

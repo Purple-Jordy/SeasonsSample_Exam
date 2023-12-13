@@ -4,13 +4,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 
 public class kitchenPot : MonoBehaviour, IInteractable
 {
-
-
     
     private GameObject InventorySlots;
     private TextMeshProUGUI itemText;

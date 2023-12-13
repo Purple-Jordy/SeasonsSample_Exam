@@ -32,7 +32,7 @@ public class Spring : MonoBehaviour
         }
         else
         {
-            fader.InFade(0f);
+            fader.InFade(0.2f);
             coll.enabled = false;
             Camera.main.GetComponent<shakeBox>().enabled = false;
             fadeImage.enabled = false;
@@ -71,6 +71,7 @@ public class Spring : MonoBehaviour
         Debug.Log("ºº¿Ã∫Í");
         theSaveAndLoad.SaveData();
 
+        PlayerPrefs.SetString("previoudScene", "2SpringScene");
         fader.FadeTo("1Options");
 
         //Option.gameObject.SetActive(true);

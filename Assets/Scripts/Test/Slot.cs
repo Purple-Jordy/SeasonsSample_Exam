@@ -23,10 +23,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
 
     private void Start()
     {
-        slotItem = this.transform.GetChild(0).gameObject;
+        slotItem = this.transform.GetChild(0).gameObject; //자신의 자식(item)
 
-        itemUIText = GameObject.Find("displayText").GetComponent<TextMeshProUGUI>();
+        
         itemNameUI = GameObject.Find("ItemNameUI");
+        itemUIText = GameObject.Find("ItemNameUI").transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         inventory = Inventory.Instance;
         slotBackground = GameObject.Find("SlotBackground");
@@ -83,6 +84,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
     }
 
 
+
     // 해당 슬롯 하나 삭제
     public void ClearSlot()
     {
@@ -100,7 +102,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
     //클릭 이벤트
     public void OnPointerClick(PointerEventData eventData)
     {
-        // 아이템이 있는 상태
+        // 클릭한 슬롯에 아이템이 있는 상태
         if (item != null) 
         {
             // 선택 X 상태
@@ -156,24 +158,29 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
         }
         else // 클릭한 슬롯에 아이템이 없다면
         {
-            inventory.previousSelectedSlot = inventory.currentSelectedSlot;
-            inventory.currentSelectedSlot = this.gameObject;
+            
 
+            //만약 이전의 슬롯에 아이템이 있었다면 자리를 바꿔준다
             if (inventory.previousSelectedSlot.GetComponent<Slot>().item != null)
             {
+                inventory.previousSelectedSlot = inventory.currentSelectedSlot;
+                inventory.currentSelectedSlot = this.gameObject;
 
                 ChangeSlot();
 
             }
 
+            //다른 걸 클릭하면 선택해제
+            chooseItem = false;
+            slotItem.GetComponent<Animator>().SetTrigger("getItem");
 
-            ChangeSlot();
         }
     
     
      }
 
 
+    // 슬롯 바꾸기
     private void ChangeSlot()
     {
 
@@ -222,11 +229,46 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
             slotBackground.GetComponent<Animator>().SetBool("InvenOpen", false);
         }
 
-        theSaveAndLoad.SaveData(); // 바뀐 슬롯 저장
+        //theSaveAndLoad.SaveData(); // 바뀐 슬롯 저장
     }
 
 
+    // 인벤토리에 새로운 아이템 슬롯 추가
+    public void LoadItem(Item _item)
+    {
+        item = _item; //아이템
+        this.slotItem.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Inventory Items/{item.itemName}"); //아이템 이미지
 
+
+        //텍스트 이름 설정
+        if (item.itemName == "pot")
+        {
+            if (kitchenPot.waterInPot) // 냄비에 물이 들어 있으면
+            {
+                itemUIText.text = item.changeText;
+            }
+            else
+            {
+                itemUIText.text = item.itemText;
+            }
+        }
+        else if (item.itemName == "egg")
+        {
+            if (ovenPot.eggRipe) // 알이 익은 상태
+            {
+                itemUIText.text = item.changeText;
+            }
+            else
+            {
+                itemUIText.text = item.itemText;
+            }
+        }
+        else
+        {
+            itemUIText.text = item.itemText;
+        }
+
+    }
 
 
 

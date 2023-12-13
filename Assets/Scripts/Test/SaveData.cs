@@ -12,7 +12,7 @@ public class SaveData
     public List<string> invenItemName = new List<string>();
     public List<Sprite> invenItemImage = new List<Sprite>();
     public List<string> invenItemText = new List<string>();
-    public List<string> invenItemChangeText = new List<string>();
+    //public List<string> invenItemChangeText = new List<string>();
 
     public List<bool> boolList = new List<bool>();
     public List<float> floatList = new List<float>();

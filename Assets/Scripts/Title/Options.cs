@@ -9,22 +9,63 @@ public class Options : MonoBehaviour
 
     private Title1 title1;
 
-    //[SerializeField]
-    //private string loadToScene = "1MainMenu";
+    [SerializeField]
+    private string loadToScene = "1MainMenu";
+
 
     void Start()
     {
-        fader.InFade(0f);
+        fader.InFade(0.3f);
         title1 = FindObjectOfType<Title1>();
     }
 
+
     public void Back()
     {
-        //this.gameObject.SetActive(false);
-        //fader.FadeTo(loadToScene);
-        title1.ClickLoad();
+        StartCoroutine(BackPlayScene());
     }
 
 
+    IEnumerator BackPlayScene()
+    {
+        
+        if (PlayerPrefs.GetString("previoudScene") != "1MainMenu")
+        {
+            fader.FadeTo();
+
+            yield return new WaitForSeconds(1f);
+
+            title1.ClickLoad();
+        }
+        else
+        {
+            fader.FadeTo(loadToScene);
+        }
+
+    }
+
+
+
+    public void QuitGame()
+    {
+        StartCoroutine(OutHere());
+    }
+
+
+    public void GoToMenu()
+    {
+        fader.FadeTo(loadToScene);
+    }
+    
+
+    IEnumerator OutHere()
+    {
+        fader.FadeTo();
+
+        yield return new WaitForSeconds(1f);
+
+        Debug.Log("Quit Game");
+        Application.Quit();
+    }
 
 }

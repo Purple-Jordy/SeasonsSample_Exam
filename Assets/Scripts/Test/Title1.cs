@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Title1 : MonoBehaviour
 {
     public static Title1 instance;
-    public string sceneName = "test";
+    public string sceneName = "2SpringScene";
 
     private SaveAndLoad theSaveAndLoad;
 

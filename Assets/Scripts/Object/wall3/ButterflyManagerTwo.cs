@@ -52,7 +52,7 @@ public class ButterflyManagerTwo : ButterflyController
         }
         else
         {
-            if (ManagerFirst.butterflyCount > 0) //큐브 만들어지기 전, 알깨기 시작하고 있으면
+            if (EggCup.eggNum >= 4) //큐브 만들어지기 전, 알깨기 시작하고 있으면
             {
                 if (displayImage.GetComponent<SpriteRenderer>().sprite.name == "wall3")
                 {

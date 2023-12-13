@@ -8,7 +8,7 @@ public class Cube : MonoBehaviour
     public SceneFader fader;
 
     [SerializeField]
-    private string loadToScene = "SpringScene";
+    private string loadToScene = "2SpringScene";
 
     // 위아래 흔들림 속도
     [SerializeField]
@@ -25,8 +25,7 @@ public class Cube : MonoBehaviour
     // 처음 위치 
     private Vector3 startPosition;
 
-    // 마우스 클릭시 클릭 이펙트 생성
-    public GameObject circle;
+   
 
 
     void Start()
@@ -75,16 +74,5 @@ public class Cube : MonoBehaviour
     }
 
 
-   IEnumerator Click()
-    {
-        circle.transform.position = Input.mousePosition;
-
-        if (!circle.activeSelf)
-        {
-            circle.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            circle.SetActive(false);
-        }
-        
-    }
+  
 }

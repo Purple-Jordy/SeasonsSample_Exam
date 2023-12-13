@@ -15,19 +15,22 @@ public class Main : MonoBehaviour
         fader.InFade(0.3f);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
     }
+
 
     public void Play()
     {
         fader.FadeTo(loadToScene);
     }
 
+
     public void Options()
     {
+        PlayerPrefs.SetString("previoudScene", "1MainMenu");
         fader.FadeTo("1Options");
     }
 

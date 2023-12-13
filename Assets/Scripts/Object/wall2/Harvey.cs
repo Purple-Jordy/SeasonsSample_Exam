@@ -87,8 +87,12 @@ public class Harvey : MonoBehaviour, IInteractable
 
         //egg.GetComponent<Animator>().SetBool("OnGround", true);
 
-        egg.GetComponent<Animator>().enabled = false;
-        eggOnGround = true;
+        if(egg != null) //알이 내려오는 도중에 획득될 수 있음
+        {
+            egg.GetComponent<Animator>().enabled = false;
+            eggOnGround = true;
+        }
+        
 
     }
 

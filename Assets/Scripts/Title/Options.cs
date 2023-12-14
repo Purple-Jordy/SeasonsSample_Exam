@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class Options : MonoBehaviour
 {
@@ -13,9 +14,22 @@ public class Options : MonoBehaviour
     private string loadToScene = "1MainMenu";
 
 
+    //옵션
+   /* public GameObject optionsUI;
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+   */
+
+    //public AudioMixer audioMixer;
+
+
     void Start()
     {
-        fader.InFade(0.3f);
+        fader.InFade(0f);
+
+        //배경음 플레이
+        AudioManager.Instance.PlayBgm("MainMenu");
+
         title1 = FindObjectOfType<Title1>();
     }
 
@@ -67,5 +81,11 @@ public class Options : MonoBehaviour
         Debug.Log("Quit Game");
         Application.Quit();
     }
+
+
+
+
+
+
 
 }

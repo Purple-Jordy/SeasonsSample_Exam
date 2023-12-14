@@ -2,25 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class Title : MonoBehaviour
 {
     public SceneFader fader;
+
     [SerializeField]
     private string loadToScene = "1MainMenu";
+
 
     public TextMeshProUGUI text;
     private string m_text = "RUSTY  LAKE";
 
+    public AudioMixer audioMixer;
+
+
     void Start()
     {
         fader.InFade(0f);
-        StartCoroutine(_typing());
+        StartCoroutine(Typing());
     }
 
 
-IEnumerator _typing()
+    IEnumerator Typing()
     {
+        //배경음 플레이
+        AudioManager.Instance.PlayBgm("titleSound");
+
         yield return new WaitForSeconds(2f);
 
         for(int i = 0; i < m_text.Length; i++)
@@ -34,4 +43,6 @@ IEnumerator _typing()
 
         fader.FadeTo(loadToScene);
     }
+
+
 }

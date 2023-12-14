@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+
     private void Awake()
     {
         if(Instance != null)
@@ -143,6 +144,7 @@ public class AudioManager : MonoBehaviour
         sound.source.Play();
 
     }
+
 
     public void StopBgm()
     {

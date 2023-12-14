@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Main : MonoBehaviour
 {
@@ -9,10 +10,15 @@ public class Main : MonoBehaviour
     [SerializeField]
     private string loadToScene = "MainMenu";
 
+    public AudioMixer audioMixer;
+
 
     void Start()
     {
         fader.InFade(0.3f);
+
+        //배경음 플레이
+        AudioManager.Instance.PlayBgm("MainMenu");
     }
 
 

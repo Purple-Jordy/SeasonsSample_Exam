@@ -45,6 +45,9 @@ public class LightSwitch : MonoBehaviour, IInteractable
             //lightOn true로 바꿔주기
             lightOn = true;
         }
+
+        //효과음 플레이
+        AudioManager.Instance.Play("lightOnOff");
     }
 
     

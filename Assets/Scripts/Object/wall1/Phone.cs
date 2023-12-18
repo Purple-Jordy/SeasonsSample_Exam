@@ -46,6 +46,9 @@ public class Phone : MonoBehaviour, IInteractable
             situationUI.GetComponent<Animator>().Play("ShowItemNameAnim", -1, 0f);
             situationText.text = "너가 만지는 모든 것들은 변해.";
 
+            //효과음 플레이
+            AudioManager.Instance.Play("phone");
+
         }
         else if (animator.GetBool("PutOnPhone") == true) 
         {

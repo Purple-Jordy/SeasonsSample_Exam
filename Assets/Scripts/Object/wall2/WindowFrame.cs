@@ -63,6 +63,8 @@ public class WindowFrame : MonoBehaviour, IInteractable
             {
                 photo4.SetActive(true);
                 photo4.GetComponent<Animator>().SetTrigger("Click");
+                //효과음 플레이
+                AudioManager.Instance.Play("curtainPhoto");
                 photoAppear = true;
             }
             

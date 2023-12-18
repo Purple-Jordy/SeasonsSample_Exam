@@ -38,6 +38,7 @@ public class Curtain : MonoBehaviour, IInteractable
         if(render.sprite.name == "window0")
         {
             render.sprite = Resources.Load<Sprite>("Object/window1");
+            
         }
         else if(render.sprite.name == "window1" && curtainOpen == false)
         {
@@ -57,6 +58,8 @@ public class Curtain : MonoBehaviour, IInteractable
             windowView.enabled = false;
         }
 
+        //효과음 플레이
+        AudioManager.Instance.Play("curtainOpen");
     }
 
 

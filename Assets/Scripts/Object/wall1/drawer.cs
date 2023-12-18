@@ -34,6 +34,8 @@ public class drawer : MonoBehaviour, IInteractable
             animator.SetBool("IsOpen", false);
         }
 
+        //효과음 플레이
+        AudioManager.Instance.Play("draw");
     }
 
 }

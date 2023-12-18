@@ -46,6 +46,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
 
         slotItem.GetComponent<Animator>().SetTrigger("getItem");
 
+        //효과음 플레이
+        AudioManager.Instance.Play("GetItem");
+
         // 아이템 이름 보여주기
         //클릭될 때 애니메이션 처음부터 재생
         itemNameUI.GetComponent<Animator>().Play("ShowItemNameAnim", -1, 0f);
@@ -187,7 +190,13 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
         this.transform.GetChild(0).GetComponent<Animator>().SetTrigger("getItem");
         Slot pre = inventory.previousSelectedSlot.GetComponent<Slot>();
 
+
         AddItem(pre.item);
+
+        //효과음 플레이
+        //AudioManager.Instance.Stop("GetItem");
+        AudioManager.Instance.Play("ChangeSlot");
+
 
         // 아이템 이름 보여주기
         //클릭될 때 애니메이션 처음부터 재생
@@ -238,7 +247,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
     {
         item = _item; //아이템
         this.slotItem.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Inventory Items/{item.itemName}"); //아이템 이미지
-
+        
 
         //텍스트 이름 설정
         if (item.itemName == "pot")

@@ -22,9 +22,10 @@ public class Spring : MonoBehaviour
     {
         startText.enabled = true;
 
-
         coll = GetComponent<BoxCollider2D>();
 
+        //배경음 플레이
+        AudioManager.Instance.PlayBgm("springScene");
 
         if (!isPlay)
         {
@@ -37,11 +38,8 @@ public class Spring : MonoBehaviour
             Camera.main.GetComponent<shakeBox>().enabled = false;
             fadeImage.enabled = false;
             startText.enabled = false;
-
-            //배경음 플레이
-            AudioManager.Instance.PlayBgm("springScene");
+          
         }
-        
         
     }
 
@@ -56,8 +54,7 @@ public class Spring : MonoBehaviour
         fader.InFade(0f);
         startText.enabled = false;
         fadeImage.enabled = true;
-        //배경음 플레이
-        AudioManager.Instance.PlayBgm("springScene");
+       
 
         yield return new WaitForSeconds(1f);
 

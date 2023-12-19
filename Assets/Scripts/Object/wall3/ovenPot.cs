@@ -114,6 +114,9 @@ public class ovenPot : MonoBehaviour, IInteractable
         }
         else // 냄비가 가스레인지 위에 없으면 화면 바깥의 냄비도 꺼준다
         {
+            
+            
+            
             //PotOnOven.SetActive(false); 
             this.GetComponent<SpriteRenderer>().enabled = false; // 냄비 이미지 띄우기
         }
@@ -138,6 +141,15 @@ public class ovenPot : MonoBehaviour, IInteractable
             if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name == UnlockItem1
                 && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
             {
+                // 가스 밸브가 켜져 있으면
+                if (valveAnim.GetBool("ValveTurnOn") == true)
+                {
+                    if (kitchenPot.waterInPot == true)
+                    {
+                        boilPot = true;
+                    }
+                }
+
                 //인벤토리에 있는 냄비 사용
                 UseItem(); // 냄비 올려둠
                 potHere = true;
@@ -152,6 +164,8 @@ public class ovenPot : MonoBehaviour, IInteractable
                 {
                     // 가스 불을 킨다
                     this.transform.GetChild(0).GetComponent<Animator>().SetBool("hasGas", true);
+                    //효과음 플레이
+                    AudioManager.Instance.Play("ovenFire");
                 }
                 else //성냥이 있지만 가스가 켜져있지 않은 상태면 "연료 없음" 뜨기
                 {
@@ -228,6 +242,7 @@ public class ovenPot : MonoBehaviour, IInteractable
 
                         // 계란이 있는 슬롯 비우기
                         inventory.currentSelectedSlot.GetComponent<Slot>().ClearSlot();
+                        AudioManager.Instance.Play("chooseItem");
                         eggHere = true;
                         Debug.Log("egg in the pot");
 

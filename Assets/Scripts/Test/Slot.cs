@@ -150,7 +150,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
 
 
                 chooseItem = true;
-
+                //효과음
+                AudioManager.Instance.Play("chooseItem");
 
             }
             else //선택된 상태면 꺼주기
@@ -195,7 +196,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler //유니티 지원함수
 
         //효과음 플레이
         //AudioManager.Instance.Stop("GetItem");
-        AudioManager.Instance.Play("ChangeSlot");
+        //AudioManager.Instance.Play("ChangeSlot");
 
 
         // 아이템 이름 보여주기

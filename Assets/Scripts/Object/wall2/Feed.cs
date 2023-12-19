@@ -53,6 +53,8 @@ public class Feeding : MonoBehaviour, IInteractable
                 {
                     // 먹이를 두고 인벤토리 비우고 save 해주기
                     inventory.currentSelectedSlot.GetComponent<Slot>().ClearSlot();
+                    //효과음 플레이
+                    AudioManager.Instance.Play("Feed");
                     isFeed = true;
                     //SaveAndLoad.SaveData();
                     

@@ -50,6 +50,8 @@ public class lockItem : MonoBehaviour, IInteractable
         {
             UIAnimator.Play("ShowItemNameAnim", -1, 0f);
             situationText.text = lockText;
+            //효과음 플레이
+            AudioManager.Instance.Play("locked");
         }
     }
 }

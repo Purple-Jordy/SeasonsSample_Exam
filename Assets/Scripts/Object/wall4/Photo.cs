@@ -170,6 +170,8 @@ public class Photo : MonoBehaviour, IInteractable
                 && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
         {
             //photo1.SetActive(true);
+            //효과음 플레이
+            AudioManager.Instance.Play("lightOnOff");
             getPhoto1 = true;
             UseItem();
         }
@@ -177,6 +179,8 @@ public class Photo : MonoBehaviour, IInteractable
             && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
         {
             //photo3.SetActive(true);
+            //효과음 플레이
+            AudioManager.Instance.Play("lightOnOff");
             getPhoto3 = true;
             UseItem();
         }
@@ -184,6 +188,8 @@ public class Photo : MonoBehaviour, IInteractable
             && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
         {
             //photo4.SetActive(true);
+            //효과음 플레이
+            AudioManager.Instance.Play("lightOnOff");
             getPhoto4 = true;
             UseItem();
         }
@@ -209,6 +215,7 @@ public class Photo : MonoBehaviour, IInteractable
             if (currentObject == null)
             {
                 currentObject = cubeComplete;
+                AudioManager.Instance.Play("complete");
             }
             else if(currentObject == cubeComplete) //두번째 클릭 이벤트
             {

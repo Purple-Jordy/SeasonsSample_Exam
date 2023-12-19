@@ -14,7 +14,7 @@ public class ClockMove : MonoBehaviour, IInteractable
         this.transform.Rotate(new Vector3(0, 0, angle));
 
         //효과음 플레이
-        AudioManager.Instance.Play("clock");
+        AudioManager.Instance.Play("lightOnOff");
 
     }
 

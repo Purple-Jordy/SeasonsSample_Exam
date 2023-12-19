@@ -37,6 +37,8 @@ public class Photo3 : ItemPickUp
 
     IEnumerator GetPhoto1()
     {
+        
+        AudioManager.Instance.Play("frameDown");
         animator.SetTrigger("Click");
 
         yield return new WaitForSeconds(1f);

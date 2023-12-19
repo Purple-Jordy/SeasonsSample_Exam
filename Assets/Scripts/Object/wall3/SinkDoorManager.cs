@@ -25,6 +25,7 @@ public class SinkDoorManager : MonoBehaviour
         sinkDoor2Open.SetActive(false);
     }
 
+
     private void Update()
     {
         if (kitchenPot.potOnSink)

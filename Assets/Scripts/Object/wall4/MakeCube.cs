@@ -93,6 +93,7 @@ public class MakeCube : MonoBehaviour, IInteractable
             {
                 cubeHere = true;
                 UseItem();
+                AudioManager.Instance.Play("cubeInWall");
             }
             else if (cubeHere == true)
             {

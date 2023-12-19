@@ -68,6 +68,7 @@ public class Candle : MonoBehaviour, IInteractable
                 {
                     // 불 애니메이션 재생
                     //fireAnim.enabled = true;
+                    AudioManager.Instance.Play("candle");
                     candleFire = true;
                     theSaveAndLoad.SaveData();
                 }

@@ -12,9 +12,6 @@ public class SelectSpring : MonoBehaviour
     void Start()
     {
         fader.InFade(0.3f);
-
-        //배경음 플레이
-        AudioManager.Instance.PlayBgm("selectScene");
         
     }
 

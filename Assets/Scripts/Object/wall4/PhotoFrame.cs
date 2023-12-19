@@ -41,6 +41,8 @@ public class PhotoFrame : MonoBehaviour, IInteractable
                 if (animator.GetBool("IsDown") == false)
                 {
                     animator.SetBool("IsDown", true);
+                    //효과음 플레이
+                    AudioManager.Instance.Play("frameDown");
                     frameDown = true;
                 }
             }
@@ -50,11 +52,14 @@ public class PhotoFrame : MonoBehaviour, IInteractable
                 if (animator.GetBool("IsDown") == false)
                 {
                     animator.SetBool("IsDown", true);
+                    //효과음 플레이
+                    AudioManager.Instance.Play("frameDown");
                     frameDown = true;
                 }
                 else
                 {
                     animator.SetBool("IsDown", false);
+                    AudioManager.Instance.Play("frameDown");
                     frameDown = false;
                 }
             }

@@ -117,8 +117,9 @@ public class EggCup : MonoBehaviour, IInteractable
                  && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
             {
                 // 인벤토리에 있는 알 사용
-                    UseItem();
-                    eggHere = true;
+                AudioManager.Instance.Play("chooseItem");
+                UseItem();
+                eggHere = true;
       
             }
 
@@ -142,27 +143,31 @@ public class EggCup : MonoBehaviour, IInteractable
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         theSaveAndLoad.SaveData();
                         StartCoroutine(camShake()); //카메라 흔들림
+                        AudioManager.Instance.Play("eggThree");
 
                         //butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 1; //나비 생성
                         wait = 1f; //1초동안 클릭 제한
                     }
                     else if (eggNum == 4)
                     {
+                        AudioManager.Instance.Stop("eggThree");
                         eggNum += 1;
                         egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         theSaveAndLoad.SaveData();
                         StartCoroutine(camShake()); //카메라 흔들림
+                        AudioManager.Instance.Play("eggFour");
 
                         //butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 4; //나비 3마리 더 등장
                         wait = 1f; //1초동안 클릭 제한
                     }
                     else if(eggNum == 5)
                     {
+                        AudioManager.Instance.Stop("eggFour");
                         eggNum += 1; //egg6화면
                         egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
-                        
+                        AudioManager.Instance.Play("eggFive");
                         StartCoroutine(camShake()); // 카메라 흔들림
 
                         blackCubeHere = true;
@@ -184,6 +189,7 @@ public class EggCup : MonoBehaviour, IInteractable
                         // 알 뿌셔
                         egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
+                        AudioManager.Instance.Play("eggHit");
                         theSaveAndLoad.SaveData();
                     }
 

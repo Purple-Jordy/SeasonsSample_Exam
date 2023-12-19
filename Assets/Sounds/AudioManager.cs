@@ -109,6 +109,7 @@ public class AudioManager : MonoBehaviour
         sound.source.Stop();
     }
 
+
     public void PlayBgm(string soundName)
     {
         // 배경음 이름 체크

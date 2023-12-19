@@ -29,6 +29,9 @@ public class Valve : MonoBehaviour, IInteractable
         {
             animator.SetBool("ValveTurnOn", true);
         }
+
+        //효과음 플레이
+        AudioManager.Instance.Play("lightOnOff");
     }
 
     

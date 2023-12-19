@@ -14,6 +14,9 @@ public class SinkDoor : MonoBehaviour, IInteractable
     {         
         sinkDoor.SetActive(true);
         this.gameObject.SetActive(false);
+
+        //효과음 플레이
+        AudioManager.Instance.Play("lightOnOff");
     }
 
 }

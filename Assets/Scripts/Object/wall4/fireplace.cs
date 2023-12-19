@@ -105,6 +105,8 @@ public class fireplace : MonoBehaviour, IInteractable
                 {
                     //불 타는 애니메이션 재생
                     animator.enabled = true;
+                    //효과음 플레이
+                    AudioManager.Instance.Play("ovenFire");
                     IsFire = true;
                     theSaveAndLoad.SaveData();
                 }

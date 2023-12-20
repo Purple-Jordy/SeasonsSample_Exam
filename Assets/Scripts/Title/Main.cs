@@ -10,32 +10,26 @@ public class Main : MonoBehaviour
     [SerializeField]
     private string loadToScene = "MainMenu";
 
-    public AudioMixer audioMixer;
-
 
     void Start()
     {
-        fader.InFade(0.3f);
+        fader.InFade(0f);
 
         //배경음 플레이
         AudioManager.Instance.PlayBgm("MainMenu");
     }
 
 
-    void Update()
-    {
-        
-    }
-
-
     public void Play()
     {
+        AudioManager.Instance.Play("OptionButton");
         fader.FadeTo(loadToScene);
     }
 
 
     public void Options()
     {
+        AudioManager.Instance.Play("OptionButton");
         PlayerPrefs.SetString("previoudScene", "1MainMenu");
         fader.FadeTo("1Options");
     }

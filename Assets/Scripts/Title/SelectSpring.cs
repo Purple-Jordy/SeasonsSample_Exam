@@ -12,12 +12,13 @@ public class SelectSpring : MonoBehaviour
     void Start()
     {
         fader.InFade(0.3f);
-        
+        AudioManager.Instance.StopBgm();
     }
 
 
     public void Options()
     {
+        AudioManager.Instance.Play("OptionButton");
         PlayerPrefs.SetString("previoudScene", "2SelectSpring");
         fader.FadeTo("1Options");
     }

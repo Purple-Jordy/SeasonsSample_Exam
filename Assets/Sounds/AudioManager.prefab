@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7993574481033666049}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4600003874291213480
 MonoBehaviour:
@@ -44,5 +44,161 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be8a58d1a28e12459d85ce6a62a52f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: titleSound
+    clip: {fileID: 8300000, guid: 771f71c733100244393858b4aeb1fbcc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: springScene
+    clip: {fileID: 8300000, guid: a8c117afee91117498fcea5d94de15e6, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MainMenu
+    clip: {fileID: 8300000, guid: e3e4248673a334e41b6aa9b6ca18f3ee, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: selectScene
+    clip: {fileID: 8300000, guid: 65fa7ab9299e31c46b184d923704f233, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: chooseItem
+    clip: {fileID: 8300000, guid: b2c638a5bb706a7468e173f97a0c6b34, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: curtainOpen
+    clip: {fileID: 8300000, guid: 76fdffcd8310f904c8e6682362955cc1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: curtainPhoto
+    clip: {fileID: 8300000, guid: d7e23c87c27e6cf439f7c080e24bb3a8, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: draw
+    clip: {fileID: 8300000, guid: 2e42cf0742d8df24cb99d53d155b1f73, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GetItem
+    clip: {fileID: 8300000, guid: 0b34fd30827fb6b4f9e9c1ae817e92c1, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: lightOnOff
+    clip: {fileID: 8300000, guid: b1adf59b788ca844c80f8cf0cd32549c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: phone
+    clip: {fileID: 8300000, guid: e79f649219975ad45a29206b4543dfe9, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: eatFeed
+    clip: {fileID: 8300000, guid: 26a9082df2c93d1419af3d668d879afc, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Feed
+    clip: {fileID: 8300000, guid: c3f720d7f55dec344939ce4eaa543689, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HarveyTouch
+    clip: {fileID: 8300000, guid: b276eb9c87f929048b4f5065efd52d87, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ovenFire
+    clip: {fileID: 8300000, guid: d18985ac232a26444ad13ea5390399b9, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: eggOnGround
+    clip: {fileID: 8300000, guid: bf9e590cb535da445979372ee2525efb, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: frameDown
+    clip: {fileID: 8300000, guid: 3cc5e7c940dfbcf4ca289bc65b91373e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: locked
+    clip: {fileID: 8300000, guid: bd03eefc915f62c4ba1dfe3aeb8b29d4, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: candle
+    clip: {fileID: 8300000, guid: 59ccaf7d56afd524b8233def1e8b306a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: eggHit
+    clip: {fileID: 8300000, guid: 14cc4a3c2e1611643bbc741520c21332, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: eggThree
+    clip: {fileID: 8300000, guid: c1bf502a4f8bc97488c543172b2084d2, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: eggFour
+    clip: {fileID: 8300000, guid: 1d0e81d287dd6cb4a957abfb43d4e362, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: eggFive
+    clip: {fileID: 8300000, guid: dbb96b752bd7cac44ad8a9a165de63c2, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: cubeInWall
+    clip: {fileID: 8300000, guid: fbb2d177a1d53a041bc1e6b7ccb219f7, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: complete
+    clip: {fileID: 8300000, guid: 8ef79bb59aa4ecc4d925af1a9e1d6a7b, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OptionButton
+    clip: {fileID: 8300000, guid: 080e38168b377ce4f9fadd1f346a5da6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 2e2409d2231eae9449ec0963c1bb19e6, type: 2}

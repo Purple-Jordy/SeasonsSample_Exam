@@ -194,7 +194,8 @@ public class ovenPot : MonoBehaviour, IInteractable
 
                     // 가스 불을 킨다
                     this.transform.GetChild(0).GetComponent<Animator>().SetBool("hasGas", true);
-
+                    //효과음 플레이
+                    AudioManager.Instance.Play("ovenFire");
                 }
                 else //성냥이 있지만 가스가 켜져있지 않은 상태면 "연료 없음" 뜨기
                 {

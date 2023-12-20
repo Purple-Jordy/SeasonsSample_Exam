@@ -291,7 +291,6 @@ MonoBehaviour:
   fader: {fileID: 481223348}
   loadToScene: 1MainMenu
   text: {fileID: 40808836}
-  audioMixer: {fileID: 0}
 --- !u!4 &183742893
 Transform:
   m_ObjectHideFlags: 0
@@ -578,33 +577,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4600003874291213480, guid: d8c0fef497af8bd4b9b37bd99d43c5e0,
         type: 3}
-      propertyPath: sounds.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600003874291213480, guid: d8c0fef497af8bd4b9b37bd99d43c5e0,
-        type: 3}
-      propertyPath: sounds.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 771f71c733100244393858b4aeb1fbcc, type: 3}
-    - target: {fileID: 4600003874291213480, guid: d8c0fef497af8bd4b9b37bd99d43c5e0,
-        type: 3}
       propertyPath: sounds.Array.data[0].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600003874291213480, guid: d8c0fef497af8bd4b9b37bd99d43c5e0,
-        type: 3}
-      propertyPath: sounds.Array.data[0].name
-      value: titleSound
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600003874291213480, guid: d8c0fef497af8bd4b9b37bd99d43c5e0,
-        type: 3}
-      propertyPath: sounds.Array.data[0].pitch
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4600003874291213480, guid: d8c0fef497af8bd4b9b37bd99d43c5e0,
         type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5653466535942140263, guid: d8c0fef497af8bd4b9b37bd99d43c5e0,
         type: 3}

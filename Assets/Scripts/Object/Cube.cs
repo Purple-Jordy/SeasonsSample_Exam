@@ -49,10 +49,10 @@ public class Cube : MonoBehaviour
                 if (hit.transform.gameObject.tag == "Cube") // 큐브 클릭 시
                 {
 
-                    
+
                     //StartCoroutine(Click());
                     //Title1.instance.ClickLoad();
-
+                    AudioManager.Instance.Play("OptionButton");
                     fader.FadeTo(loadToScene);
                 }
             }

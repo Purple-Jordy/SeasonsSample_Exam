@@ -27,11 +27,12 @@ public class AudioManager : MonoBehaviour
             return;
         }
         Instance = this;
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
 
         //
         AudioMixerGroup[] audioMixerGroups = audioMixer.FindMatchingGroups("Master");
         
+
         // 사운드 목록 셋팅
         foreach(var s in sounds)
         {
@@ -154,6 +155,9 @@ public class AudioManager : MonoBehaviour
 
         bgmName = "";
     }
+
+
+    
 
 }
 

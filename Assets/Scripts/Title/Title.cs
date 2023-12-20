@@ -15,7 +15,6 @@ public class Title : MonoBehaviour
     public TextMeshProUGUI text;
     private string m_text = "RUSTY  LAKE";
 
-    public AudioMixer audioMixer;
 
 
     void Start()
@@ -28,9 +27,9 @@ public class Title : MonoBehaviour
     IEnumerator Typing()
     {
         //배경음 플레이
-        AudioManager.Instance.PlayBgm("titleSound");
+        AudioManager.Instance.Play("titleSound");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.3f);
 
         for(int i = 0; i < m_text.Length; i++)
         {

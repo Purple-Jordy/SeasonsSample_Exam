@@ -71,6 +71,7 @@ public class Spring : MonoBehaviour
 
     public void Options()
     {
+        AudioManager.Instance.Play("OptionButton");
         Debug.Log("ºº¿Ã∫Í");
         theSaveAndLoad.SaveData();
 

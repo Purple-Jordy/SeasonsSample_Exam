@@ -36,13 +36,14 @@ public class Options : MonoBehaviour
 
     public void Back()
     {
+        AudioManager.Instance.Play("OptionButton");
         StartCoroutine(BackPlayScene());
     }
 
 
     IEnumerator BackPlayScene()
     {
-        
+
         if (PlayerPrefs.GetString("previoudScene") != "1MainMenu")
         {
             fader.FadeTo();
@@ -62,12 +63,14 @@ public class Options : MonoBehaviour
 
     public void QuitGame()
     {
+        AudioManager.Instance.Play("OptionButton");
         StartCoroutine(OutHere());
     }
 
 
     public void GoToMenu()
     {
+        AudioManager.Instance.Play("OptionButton");
         fader.FadeTo(loadToScene);
     }
     

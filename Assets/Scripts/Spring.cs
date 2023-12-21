@@ -18,29 +18,36 @@ public class Spring : MonoBehaviour
     public static bool isPlay = false;
 
 
+
     void Start()
     {
         startText.enabled = true;
-
         coll = GetComponent<BoxCollider2D>();
 
         //배경음 플레이
         AudioManager.Instance.PlayBgm("springScene");
 
-        if (!isPlay)
+        if (PlayerPrefs.HasKey("isPlay"))
         {
-            StartCoroutine(startNarra());
+            if (PlayerPrefs.GetInt("isPlay") == 1)
+            {
+                fader.InFade(0.2f);
+                coll.enabled = false;
+                Camera.main.GetComponent<shakeBox>().enabled = false;
+                fadeImage.enabled = false;
+                startText.enabled = false;
+            }
+            else
+            {
+                StartCoroutine(startNarra());
+
+            }
         }
         else
         {
-            fader.InFade(0.2f);
-            coll.enabled = false;
-            Camera.main.GetComponent<shakeBox>().enabled = false;
-            fadeImage.enabled = false;
-            startText.enabled = false;
-          
+            StartCoroutine(startNarra());
+            
         }
-        
     }
 
 
@@ -63,9 +70,11 @@ public class Spring : MonoBehaviour
         Camera.main.GetComponent<shakeBox>().enabled = false;
         fadeImage.enabled = false;
 
-        isPlay = true;
+        //isPlay = true;
+        PlayerPrefs.SetInt("isPlay", 1);
+        theSaveAndLoad.SaveData();
 
-        StopCoroutine(startNarra());
+        //StopCoroutine(startNarra());
     }
 
 

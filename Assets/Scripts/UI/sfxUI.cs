@@ -10,12 +10,28 @@ public class sfxUI : MonoBehaviour
     public AudioMixer audioMixer;
 
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetString("sfx") == "off")
+        {
+            sfxOff.SetActive(true);
+            sfxOn.SetActive(false);
+        }
+        else if (PlayerPrefs.GetString("sfx") == "on")
+        {
+            sfxOn.SetActive(true);
+            sfxOff.SetActive(false);
+        }
+    }
+
+
     public void SfxOff()
     {
         AudioManager.Instance.Play("OptionButton");
         audioMixer.SetFloat("SFX", -40f);
         sfxOff.SetActive(true);
         sfxOn.SetActive(false);
+        PlayerPrefs.SetString("sfx", "off");
     }
 
 
@@ -25,5 +41,6 @@ public class sfxUI : MonoBehaviour
         AudioManager.Instance.Play("OptionButton");
         sfxOn.SetActive(true);
         sfxOff.SetActive(false);
+        PlayerPrefs.SetString("sfx", "on");
     }
 }

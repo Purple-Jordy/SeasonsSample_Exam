@@ -29,7 +29,7 @@ public class Title : MonoBehaviour
         //배경음 플레이
         AudioManager.Instance.Play("titleSound");
 
-        yield return new WaitForSeconds(2.3f);
+        yield return new WaitForSeconds(2.8f);
 
         for(int i = 0; i < m_text.Length; i++)
         {

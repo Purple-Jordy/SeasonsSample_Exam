@@ -218,8 +218,12 @@ public class EggCup : MonoBehaviour, IInteractable
                 if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name == UnlockItem2
                     && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
                 {
-                    UIAnimator.Play("ShowItemNameAnim", -1, 0f);
-                    situationText.text = lockText;
+                    if(eggNum == 0)
+                    {
+                        UIAnimator.Play("ShowItemNameAnim", -1, 0f);
+                        situationText.text = lockText;
+                    }
+                    
                 }
                 else if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name != UnlockItem2
                     && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)

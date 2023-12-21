@@ -1,1 +1,0 @@
-{"invenArrayNumber":[0,1],"invenItemName":["match","spoon"],"invenItemImage":[{"instanceID":29012},{"instanceID":29014}],"invenItemText":["성냥","숟가락"],"boolList":[true,true,true,true,true,false,true,true,true,true,false,true,false,true,true,true,true],"floatList":[6.0],"stringList":["feed"]}

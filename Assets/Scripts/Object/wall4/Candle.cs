@@ -40,6 +40,7 @@ public class Candle : MonoBehaviour, IInteractable
             fireAnim.enabled = true;
         }
 
+
         //줌 화면일때만 콜라이더를 켜준다
         if (currentDisplay.CurrentState == DisplayImage.State.zoom)
         {

@@ -59,6 +59,20 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetString("bgm") == "off")
+        {
+            audioMixer.SetFloat("BGM", -40f);
+        }
+        
+        if(PlayerPrefs.GetString("sfx") == "off")
+        {
+            audioMixer.SetFloat("SFX", -40f);
+        }
+    }
+
+
     public void Play(string soundName)
     {
         Sound sound = null;

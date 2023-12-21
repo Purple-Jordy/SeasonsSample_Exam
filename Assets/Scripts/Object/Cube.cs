@@ -7,9 +7,6 @@ public class Cube : MonoBehaviour
 {
     public SceneFader fader;
 
-    [SerializeField]
-    private string loadToScene = "2SpringScene";
-
     // 위아래 흔들림 속도
     [SerializeField]
     private float verticalBobFrequency = 1f;
@@ -25,16 +22,18 @@ public class Cube : MonoBehaviour
     // 처음 위치 
     private Vector3 startPosition;
 
-   
+    private Title1 title1;
 
 
-    void Start()
+    public void Start()
     {
         // 초기화
         startPosition = transform.position;
+        title1 = FindObjectOfType<Title1>();
     }
 
-    void Update()
+
+    public virtual void Update()
     {
         //화면 클릭 체크
         if (Input.GetMouseButtonDown(0))
@@ -48,12 +47,9 @@ public class Cube : MonoBehaviour
 
                 if (hit.transform.gameObject.tag == "Cube") // 큐브 클릭 시
                 {
-
-
-                    //StartCoroutine(Click());
-                    //Title1.instance.ClickLoad();
                     AudioManager.Instance.Play("OptionButton");
-                    fader.FadeTo(loadToScene);
+                    StartCoroutine(startGame());
+                    
                 }
             }
 
@@ -63,7 +59,8 @@ public class Cube : MonoBehaviour
 
     }
 
-    private void Rotate()
+
+    public void Rotate()
     {
         // 위 아래 흔들림
         float bobingAnimationPhase = Mathf.Sin(verticalBobFrequency * Time.time) * bobingAmount;
@@ -74,5 +71,15 @@ public class Cube : MonoBehaviour
     }
 
 
+    IEnumerator startGame()
+    {
+
+        fader.FadeTo();
+
+        yield return new WaitForSeconds(1f);
+
+        title1.ClickLoad();
+
+    }
   
 }

@@ -34,4 +34,10 @@ public class Main : MonoBehaviour
         fader.FadeTo("1Options");
     }
 
+
+    public void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        Debug.Log("Delete");
+    }
 }

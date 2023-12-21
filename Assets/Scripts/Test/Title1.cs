@@ -43,6 +43,8 @@ public class Title1 : MonoBehaviour
 
         theSaveAndLoad = FindObjectOfType<SaveAndLoad>(); // 다음 씬의 SaveAndLoad
         theSaveAndLoad.LoadData();
+
+        
         //gameObject.SetActive(false);  // "GameTitle"의 Canvas는 잠시 비활성화
     }
 

@@ -5,7 +5,7 @@ using System.IO;
 
 public class SaveAndLoad : MonoBehaviour
 {
-     
+    private SceneFader fader;
     private SaveData saveData = new SaveData();
 
     private string SAVE_DATA_DIRECTORY;  // 저장할 폴더 경로
@@ -17,6 +17,8 @@ public class SaveAndLoad : MonoBehaviour
 
     void Start()
     {
+        fader = FindObjectOfType<SceneFader>();
+
         SAVE_DATA_DIRECTORY = Application.dataPath + "/Save/";
 
         if (!Directory.Exists(SAVE_DATA_DIRECTORY)) // 해당 경로가 존재하지 않는다면
@@ -70,6 +72,7 @@ public class SaveAndLoad : MonoBehaviour
         saveData.boolList.Add(EggCup.eggHere);
         saveData.boolList.Add(EggCup.eggDrop);
         saveData.boolList.Add(MakeCube.cubeHere);
+        saveData.boolList.Add(ovenPot.eggRipe);
      
 
 
@@ -132,6 +135,7 @@ public class SaveAndLoad : MonoBehaviour
             EggCup.eggHere = saveData.boolList[14];
             EggCup.eggDrop = saveData.boolList[15];
             MakeCube.cubeHere = saveData.boolList[16];
+            ovenPot.eggRipe = saveData.boolList[17];
 
 
 
@@ -147,28 +151,42 @@ public class SaveAndLoad : MonoBehaviour
         }
         else
             Debug.Log("세이브 파일이 없습니다.");
+
     }
 
 
-    /*public void LoadHarvey()
+    public void ResetData()
     {
-        if (File.Exists(SAVE_DATA_DIRECTORY + SAVE_FILENAME))
-        {
-            // 전체 읽어오기
-            string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
-            saveData = JsonUtility.FromJson<SaveData>(loadJson);
+        StartCoroutine(ClearData());
+    }
 
 
-            Feeding.isFeed = saveData.boolList[1];
+    IEnumerator ClearData()
+    {
+        AudioManager.Instance.Play("OptionButton");
+
+        saveData.invenArrayNumber.Clear();
+        saveData.invenItemName.Clear();
+        saveData.invenItemImage.Clear();
+        saveData.invenItemText.Clear();
+
+        saveData.boolList.Clear();
+        saveData.stringList.Clear();
+        saveData.floatList.Clear();
 
 
-            Feeding.spriteName = saveData.stringList[0];
+        // 최종 전체 저장
+        string json = JsonUtility.ToJson(saveData); // 제이슨화
 
+        File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json);
 
+        Debug.Log("저장 완료");
+        Debug.Log(json);
 
-            Debug.Log("로드 완료");
-        }
-        else
-            Debug.Log("세이브 파일이 없습니다.");
-    }*/
+        PlayerPrefs.DeleteKey("isPlay");
+
+        yield return new WaitForSeconds(0.1f);
+
+        fader.FadeTo("2SpringScene");
+    }
 }

@@ -28,6 +28,7 @@ public class kitchenPot : MonoBehaviour, IInteractable
     private sinkWater sinkWater;
     public GameObject PotInkitchen;
 
+
     public static bool waterInPot;
     public static bool potOnSink = false;
 
@@ -55,6 +56,8 @@ public class kitchenPot : MonoBehaviour, IInteractable
         // 싱크대 위에 냄비가 있는 경우
         if(this.GetComponent<SpriteRenderer>().enabled == true)
         {
+
+
             // 냄비 안에 물을 부으면
             if (sinkWater.waterFlow == true)
             {

@@ -67,11 +67,15 @@ public class Candle : MonoBehaviour, IInteractable
             {
                 if (inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
                 {
-                    // 불 애니메이션 재생
-                    //fireAnim.enabled = true;
-                    AudioManager.Instance.Play("candle");
-                    candleFire = true;
-                    theSaveAndLoad.SaveData();
+                    if(candleFire == false)
+                    {
+                        // 불 애니메이션 재생
+                        //fireAnim.enabled = true;
+                        AudioManager.Instance.Play("candle");
+                        candleFire = true;
+                        theSaveAndLoad.SaveData();
+                    }
+                    
                 }
 
             }

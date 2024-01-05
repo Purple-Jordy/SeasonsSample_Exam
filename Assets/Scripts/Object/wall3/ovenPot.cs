@@ -38,6 +38,7 @@ public class ovenPot : MonoBehaviour, IInteractable
     public GameObject whiteSmoke; // 흰 연기
     public GameObject blackSmoke; // 검정 연기
 
+
     public static bool eggHere = false; // 알이 냄비에 들어가 있는지 유무
     public static bool potHere = false; // 냄비가 가스레인지 위에 있는지
     public bool boilPot = false; // 냄비가 끓고 있는지 
@@ -88,6 +89,9 @@ public class ovenPot : MonoBehaviour, IInteractable
         //냄비가 가스레인지 위에 있음
         if (potHere == true)
         {
+
+
+            
             // 가스 밸브가 켜져 있으면
             if (valveAnim.GetBool("ValveTurnOn") == true)
             {

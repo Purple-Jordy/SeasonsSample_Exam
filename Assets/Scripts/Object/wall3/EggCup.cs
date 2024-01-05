@@ -143,7 +143,10 @@ public class EggCup : MonoBehaviour, IInteractable
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         theSaveAndLoad.SaveData();
                         StartCoroutine(camShake()); //카메라 흔들림
+                        StartCoroutine(StopBgm("springScene"));
                         AudioManager.Instance.Play("eggThree");
+
+                        
 
                         //butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 1; //나비 생성
                         wait = 1f; //1초동안 클릭 제한
@@ -156,7 +159,9 @@ public class EggCup : MonoBehaviour, IInteractable
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         theSaveAndLoad.SaveData();
                         StartCoroutine(camShake()); //카메라 흔들림
+                        StartCoroutine(StopBgm("springScene"));
                         AudioManager.Instance.Play("eggFour");
+                       
 
                         //butterflyManager.GetComponent<ButterflyManager>().butterflyCount = 4; //나비 3마리 더 등장
                         wait = 1f; //1초동안 클릭 제한
@@ -167,6 +172,7 @@ public class EggCup : MonoBehaviour, IInteractable
                         eggNum += 1; //egg6화면
                         egg.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
                         eggCup1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("object/egg" + (eggNum));
+                        StartCoroutine(StopBgm("springScene"));
                         AudioManager.Instance.Play("eggFive");
                         StartCoroutine(camShake()); // 카메라 흔들림
 
@@ -293,4 +299,13 @@ public class EggCup : MonoBehaviour, IInteractable
 
     }
 
+    IEnumerator StopBgm(string BgmName)
+    {
+        AudioManager.Instance.PauseBgm(BgmName);
+
+        yield return new WaitForSeconds(1f);
+
+        AudioManager.Instance.UnPauseBgm(BgmName);
+
+    }
 }

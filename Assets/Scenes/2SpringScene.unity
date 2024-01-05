@@ -2043,7 +2043,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202509805}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a9eedd6903195b4aa0422921eb3dfa1, type: 3}
   m_Name: 
@@ -3369,6 +3369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974060718105296897, guid: 39c6e7a645873ea4fb4efee0f973981c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8121271048968977859, guid: 39c6e7a645873ea4fb4efee0f973981c,
         type: 3}
@@ -14252,7 +14257,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173278199}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -21850,7 +21855,8 @@ MonoBehaviour:
   theSaveAndLoad: {fileID: 1420826988}
   Option: {fileID: 9033574101689230911}
   fade: {fileID: 1217263917696495704}
-  fadeImage: {fileID: 1048918064}
+  fadeAnim: {fileID: 1048918064}
+  OptionButton: {fileID: 9033574101689230911}
 --- !u!114 &1535826689
 MonoBehaviour:
   m_ObjectHideFlags: 0

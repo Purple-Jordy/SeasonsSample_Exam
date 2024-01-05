@@ -83,12 +83,28 @@ public class ovenPot : MonoBehaviour, IInteractable
             // 가스불 애니메이션은 꺼진다
             this.transform.GetChild(0).GetComponent<Animator>().SetBool("hasGas", false);
         }
-        
 
 
         //냄비가 가스레인지 위에 있음
         if (potHere == true)
-        { 
+        {
+            // 가스 밸브가 켜져 있으면
+            if (valveAnim.GetBool("ValveTurnOn") == true)
+            {
+                // 불 애니메이션이 나오는 상태라면
+                if(this.transform.GetChild(0).GetComponent<Animator>().GetBool("hasGas") == true)
+                {
+                    // 물이 있다면 끓는다
+                    if (kitchenPot.waterInPot == true)
+                    {
+                        boilPot = true;
+                    }
+                }
+                
+                
+            }
+
+
             //냄비를 가스레인지 위에 두고 화면을 벗어날 경우
             //PotOnOven.SetActive(true);
             this.GetComponent<SpriteRenderer>().enabled = true; // 냄비 이미지 띄우기
@@ -141,18 +157,10 @@ public class ovenPot : MonoBehaviour, IInteractable
             if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name == UnlockItem1
                 && inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
             {
-                // 가스 밸브가 켜져 있으면
-                if (valveAnim.GetBool("ValveTurnOn") == true)
-                {
-                    if (kitchenPot.waterInPot == true)
-                    {
-                        boilPot = true;
-                    }
-                }
-
                 //인벤토리에 있는 냄비 사용
                 UseItem(); // 냄비 올려둠
                 potHere = true;
+
 
             } // 선택한 슬롯이 성냥이라면
             else if (inventory.currentSelectedSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite.name == UnlockItem2
@@ -162,10 +170,16 @@ public class ovenPot : MonoBehaviour, IInteractable
                 // 가스 밸브가 켜져 있으면
                 if (valveAnim.GetBool("ValveTurnOn") == true)
                 {
-                    // 가스 불을 킨다
-                    this.transform.GetChild(0).GetComponent<Animator>().SetBool("hasGas", true);
-                    //효과음 플레이
-                    AudioManager.Instance.Play("ovenFire");
+                    //이미 가스 불이 켜진 상태가 아니라면
+                    if (this.transform.GetChild(0).GetComponent<Animator>().GetBool("hasGas") != true)
+                    {
+                        // 가스 불을 킨다
+                        this.transform.GetChild(0).GetComponent<Animator>().SetBool("hasGas", true);
+                        //효과음 플레이
+                        AudioManager.Instance.Play("ovenFire");
+                    }
+
+                    
                 }
                 else //성냥이 있지만 가스가 켜져있지 않은 상태면 "연료 없음" 뜨기
                 {
@@ -187,15 +201,14 @@ public class ovenPot : MonoBehaviour, IInteractable
                 // 가스 밸브가 켜져 있으면
                 if (valveAnim.GetBool("ValveTurnOn") == true)
                 {
-                    if(kitchenPot.waterInPot == true)
+                    //이미 가스 불이 켜진 상태가 아니라면
+                    if (this.transform.GetChild(0).GetComponent<Animator>().GetBool("hasGas") != true)
                     {
-                        boilPot = true;
+                        // 가스 불을 킨다
+                        this.transform.GetChild(0).GetComponent<Animator>().SetBool("hasGas", true);
+                        //효과음 플레이
+                        AudioManager.Instance.Play("ovenFire");
                     }
-
-                    // 가스 불을 킨다
-                    this.transform.GetChild(0).GetComponent<Animator>().SetBool("hasGas", true);
-                    //효과음 플레이
-                    AudioManager.Instance.Play("ovenFire");
                 }
                 else //성냥이 있지만 가스가 켜져있지 않은 상태면 "연료 없음" 뜨기
                 {

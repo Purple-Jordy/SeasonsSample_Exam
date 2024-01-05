@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
     private string bgmName = "";
+    private string sfxName = "";
 
     public AudioMixer audioMixer;
 
@@ -75,6 +76,15 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string soundName)
     {
+        // 배경음 이름 체크
+        if (sfxName == soundName)
+        {
+            // 이전 효과음 정지
+            Stop(sfxName);
+            
+        }
+
+
         Sound sound = null;
 
         // 사운드 목록에서 지정
@@ -83,6 +93,7 @@ public class AudioManager : MonoBehaviour
             if(s.name == soundName)
             {
                 sound = s;
+                sfxName = s.name;
                 break;
             }
         }
@@ -102,6 +113,8 @@ public class AudioManager : MonoBehaviour
     // 사운드 정지
     public void Stop(string soundName)
     {
+        
+        
         Sound sound = null;
 
         // 사운드 목록에서 지정
@@ -110,6 +123,7 @@ public class AudioManager : MonoBehaviour
             if (s.name == soundName)
             {
                 sound = s;
+                
                 break;
             }
         }
@@ -171,6 +185,59 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    //일시정지
+    public void PauseBgm(string soundName)
+    {
+
+        // 배경음 플레이
+        Sound sound = null;
+
+        // 사운드 목록에서 지정
+        foreach (var s in sounds)
+        {
+            if (s.name == soundName)
+            {
+                sound = s;
+                break;
+            }
+        }
+
+        if (sound == null)
+        {
+            Debug.Log($"Cannot Find {soundName}");
+            return;
+        }
+
+        // 찾은 사운드의 AudioSource를 일시정지
+        sound.source.Pause();
+    }
+
+
+    public void UnPauseBgm(string soundName)
+    {
+        
+        // 배경음 플레이
+        Sound sound = null;
+
+        // 사운드 목록에서 지정
+        foreach (var s in sounds)
+        {
+            if (s.name == soundName)
+            {
+                sound = s;
+                break;
+            }
+        }
+
+        if (sound == null)
+        {
+            Debug.Log($"Cannot Find {soundName}");
+            return;
+        }
+
+        // 일시정지했던 사운드의 AudioSource를 다시 플레이
+        sound.source.UnPause();
+    }
     
 
 }

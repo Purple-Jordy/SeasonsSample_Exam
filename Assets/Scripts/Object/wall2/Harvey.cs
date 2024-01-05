@@ -13,8 +13,10 @@ public class Harvey : MonoBehaviour, IInteractable
 
     private Animator animator;
     private bool eatFeed = false;
+    private bool makeEgg = false;
     public static bool eggOnGround = false;
     float wait = 0f;
+
 
     private void Start()
     {
@@ -56,12 +58,16 @@ public class Harvey : MonoBehaviour, IInteractable
         else if (Feeding.isFeed == true && eatFeed == true && egg != null)
         {
             // 음식이 있고 음식을 먹었다면
-            //알의 애니메이션 재생
-           
-                if (!eggOnGround)
+            //알의 애니메이션 재생(한번만 재생되게)
+            if (!eggOnGround)
+            {
+                if(makeEgg == false)
                 {
                     StartCoroutine(eggOnTheGround());
-                }
+                    makeEgg = true;
+                }    
+                
+            }
                 
             
 
@@ -100,7 +106,7 @@ public class Harvey : MonoBehaviour, IInteractable
         // 터치 막기
         wait = 1f;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
 
         //효과음 플레이
         AudioManager.Instance.Play("eggOnGround");

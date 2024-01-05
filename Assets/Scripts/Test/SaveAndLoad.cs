@@ -106,6 +106,8 @@ public class SaveAndLoad : MonoBehaviour
             string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
+            Spring.isPlay = saveData.boolList[0];
+
 
             theInventory = FindObjectOfType<Inventory>();
 
@@ -118,7 +120,7 @@ public class SaveAndLoad : MonoBehaviour
             }
 
 
-            Spring.isPlay = saveData.boolList[0];
+            
             Feeding.isFeed = saveData.boolList[1];
             Harvey.eggOnGround = saveData.boolList[2];
             fireplace.woodHere = saveData.boolList[3];
@@ -171,6 +173,27 @@ public class SaveAndLoad : MonoBehaviour
         saveData.invenItemText.Clear();
 
         saveData.boolList.Clear();
+
+        Spring.isPlay = false;
+        Feeding.isFeed = false;
+        Harvey.eggOnGround = false;
+        fireplace.woodHere = false;
+        fireplace.IsFire = false;
+        Candle.candleFire = false;
+        Photo.getPhoto1 = false;
+        Photo.getPhoto3 = false;
+        Photo.getPhoto4 = false;
+        LightSwitch.lightOn = false;
+        kitchenPot.potOnSink = false;
+        ovenPot.potHere = false;
+        ovenPot.eggHere = false;
+        kitchenPot.waterInPot = false;
+        EggCup.eggHere = false;
+        EggCup.eggDrop = false;
+        MakeCube.cubeHere = false;
+        ovenPot.eggRipe = false;
+
+
         saveData.stringList.Clear();
         saveData.floatList.Clear();
 
@@ -183,7 +206,7 @@ public class SaveAndLoad : MonoBehaviour
         Debug.Log("저장 완료");
         Debug.Log(json);
 
-        PlayerPrefs.DeleteKey("isPlay");
+        //PlayerPrefs.DeleteKey("isPlay");
 
         yield return new WaitForSeconds(0.1f);
 

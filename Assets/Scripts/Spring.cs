@@ -13,68 +13,69 @@ public class Spring : MonoBehaviour
     [SerializeField] private SaveAndLoad theSaveAndLoad;
     public GameObject Option;
     public GameObject fade;
-    public Animator fadeImage;
+    public Animator fadeAnim;
 
     public static bool isPlay = false;
+    public GameObject OptionButton;
+
 
 
 
     void Start()
     {
-        startText.enabled = true;
+        //터치 막기
         coll = GetComponent<BoxCollider2D>();
 
         //배경음 플레이
         AudioManager.Instance.PlayBgm("springScene");
 
-        if (PlayerPrefs.HasKey("isPlay"))
-        {
-            if (PlayerPrefs.GetInt("isPlay") == 1)
-            {
-                fader.InFade(0.2f);
-                coll.enabled = false;
-                Camera.main.GetComponent<shakeBox>().enabled = false;
-                fadeImage.enabled = false;
-                startText.enabled = false;
-            }
-            else
-            {
-                StartCoroutine(startNarra());
+        StartCoroutine(startNarra());
 
-            }
-        }
-        else
-        {
-            StartCoroutine(startNarra());
-            
-        }
+       
+
     }
-
-
 
 
     IEnumerator startNarra()
     {
+        yield return new WaitForSeconds(0.1f);
+        
+        
+        if (isPlay == true)
+        {
+            fader.InFade(0.2f); // 화면 밝게 
+            coll.enabled = false; // 터치 가능
+            Camera.main.GetComponent<shakeBox>().enabled = false; //셰이크 박스 꺼주기
+            fadeAnim.enabled = false; //페이드 이미지 꺼주기
+            startText.enabled = false; //시작 글씨 꺼주기 
+        }
+        else
+        {
+            OptionButton.SetActive(false);
+            startText.enabled = true;
+            Camera.main.GetComponent<shakeBox>().enabled = true; //셰이크 박스 꺼주기
 
-        yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3f);
 
-        fader.InFade(0f);
-        startText.enabled = false;
-        fadeImage.enabled = true;
-       
-
-        yield return new WaitForSeconds(1f);
+            fader.InFade(0f);
+            startText.enabled = false;
+            fadeAnim.enabled = true;
 
 
-        coll.enabled = false;
-        Camera.main.GetComponent<shakeBox>().enabled = false;
-        fadeImage.enabled = false;
+            yield return new WaitForSeconds(1f);
 
-        //isPlay = true;
-        PlayerPrefs.SetInt("isPlay", 1);
-        theSaveAndLoad.SaveData();
+            OptionButton.SetActive(true);
+            coll.enabled = false;
+            Camera.main.GetComponent<shakeBox>().enabled = false;
+            fadeAnim.enabled = false;
 
-        //StopCoroutine(startNarra());
+            isPlay = true;
+
+        }
+
+
+
+
     }
 
 

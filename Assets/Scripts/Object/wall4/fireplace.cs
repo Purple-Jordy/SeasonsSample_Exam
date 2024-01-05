@@ -103,12 +103,16 @@ public class fireplace : MonoBehaviour, IInteractable
             {
                 if (inventory.currentSelectedSlot.GetComponent<Slot>().chooseItem == true)
                 {
-                    //불 타는 애니메이션 재생
-                    animator.enabled = true;
-                    //효과음 플레이
-                    AudioManager.Instance.Play("ovenFire");
-                    IsFire = true;
-                    theSaveAndLoad.SaveData();
+                    if(IsFire == false)
+                    {
+                        //불 타는 애니메이션 재생
+                        animator.enabled = true;
+                        //효과음 플레이
+                        AudioManager.Instance.Play("ovenFire");
+                        IsFire = true;
+                        theSaveAndLoad.SaveData();
+                    }
+                    
                 }
             }
             else // 선택한 슬롯이 성냥이 아니면

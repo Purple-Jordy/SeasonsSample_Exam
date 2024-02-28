@@ -22,14 +22,14 @@ public class Cube : MonoBehaviour
     // 처음 위치 
     private Vector3 startPosition;
 
-    private Title1 title1;
+    private LoadData loadData; // 씬 데이터 관련
 
 
     public void Start()
     {
         // 초기화
         startPosition = transform.position;
-        title1 = FindObjectOfType<Title1>();
+        loadData = FindObjectOfType<LoadData>(); // 오브젝트 찾기
     }
 
 
@@ -38,47 +38,51 @@ public class Cube : MonoBehaviour
         //화면 클릭 체크
         if (Input.GetMouseButtonDown(0))
         {
+            // 카메라에서 마우스 포인터 위치로 레이를 발사
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            RaycastHit hit; // 객체와 Ray의 충돌에 대한 결과 정보를 저장하는 구조체
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit)) //충돌이 있다면
             {
                 Debug.Log(hit.transform.gameObject);
 
-                if (hit.transform.gameObject.tag == "Cube") // 큐브 클릭 시
+                if (hit.transform.gameObject.tag == "Cube") // 충돌체의 태그가 큐브라면
                 {
-                    AudioManager.Instance.Play("OptionButton");
-                    StartCoroutine(startGame());
-                    
+                    AudioManager.Instance.Play("OptionButton"); //효과음 재생
+                    StartCoroutine(startGame()); // startGame 코루틴 시작
+
                 }
             }
 
         }
 
+        // 큐브 회전
         Rotate();
 
     }
 
 
+    // 큐브 회전
     public void Rotate()
     {
         // 위 아래 흔들림
         float bobingAnimationPhase = Mathf.Sin(verticalBobFrequency * Time.time) * bobingAmount;
         transform.position = startPosition + Vector3.up * bobingAnimationPhase;
 
-        //회전
+        // 큐브 회전
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, Space.World);
     }
 
 
+    // 게임 시작 코루틴 
     IEnumerator startGame()
     {
 
-        fader.FadeTo();
+        fader.FadeTo(1f); // 페이드 아웃
 
         yield return new WaitForSeconds(1f);
 
-        title1.ClickLoad();
+        loadData.ClickLoad(); //데이터 불러오면서 springScene으로 이동
 
     }
   

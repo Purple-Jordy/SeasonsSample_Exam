@@ -157,6 +157,7 @@ public class SaveAndLoad : MonoBehaviour
     }
 
 
+    // 데이터 초기화
     public void ResetData()
     {
         StartCoroutine(ClearData());
@@ -212,4 +213,5 @@ public class SaveAndLoad : MonoBehaviour
 
         fader.FadeTo("2SpringScene");
     }
+
 }

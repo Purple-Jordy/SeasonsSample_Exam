@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Title1 : MonoBehaviour
+public class LoadData : MonoBehaviour
 {
-    public static Title1 instance;
+    public static LoadData instance;
     public string sceneName = "2SpringScene";
 
     private SaveAndLoad theSaveAndLoad;

@@ -19,11 +19,13 @@ public class RotateCube : MonoBehaviour
     // 처음 위치 
     private Vector3 startPosition;
 
+
     private void Start()
     {
         // 초기화
         startPosition = transform.position;
     }
+
 
     private void Update()
     {
@@ -33,7 +35,6 @@ public class RotateCube : MonoBehaviour
 
         //회전
         transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, Space.World);
-
 
     }
 

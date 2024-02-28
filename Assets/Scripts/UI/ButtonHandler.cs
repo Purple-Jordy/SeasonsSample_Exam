@@ -50,7 +50,7 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator Right()
     {
-        fader.FadeTo();
+        fader.FadeTo(0.1f);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -86,7 +86,7 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator Left()
     {
-        fader.FadeTo();
+        fader.FadeTo(0.1f);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -121,7 +121,7 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator Back()
     {
-        fader.FadeTo();
+        fader.FadeTo(0.1f);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -154,7 +154,7 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator Up()
     {
-        fader.FadeTo();
+        fader.FadeTo(0.1f);
 
         yield return new WaitForSeconds(0.1f);
 

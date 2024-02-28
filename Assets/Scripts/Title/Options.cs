@@ -8,51 +8,42 @@ public class Options : MonoBehaviour
 {
     public SceneFader fader;
 
-    private Title1 title1;
+    private LoadData loadData;
 
     [SerializeField]
     private string loadToScene = "1MainMenu";
 
 
-    //옵션
-   /* public GameObject optionsUI;
-    public Slider bgmSlider;
-    public Slider sfxSlider;
-   */
-
-    //public AudioMixer audioMixer;
-
-
     void Start()
     {
-        fader.InFade(0f);
+        fader.InFade(0.1f); //페이드인
 
         //배경음 플레이
         AudioManager.Instance.PlayBgm("MainMenu");
 
-        title1 = FindObjectOfType<Title1>();
+        loadData = FindObjectOfType<LoadData>(); //LoadData 오브젝트 찾기
     }
 
-
+    // 뒤로 돌아가기
     public void Back()
     {
-        AudioManager.Instance.Play("OptionButton");
-        StartCoroutine(BackPlayScene());
+        AudioManager.Instance.Play("OptionButton"); //효과음 재생
+        StartCoroutine(BackPlayScene()); // BackPlayScene 코루틴 실행
     }
 
 
     IEnumerator BackPlayScene()
     {
-
+        // 이전의 씬이 메인 메뉴가 아닌 경우 (이전 씬이 springScene이거나 selectSpring이었을 경우)
         if (PlayerPrefs.GetString("previoudScene") != "1MainMenu")
         {
-            fader.FadeTo();
+            fader.FadeTo(1f);
 
             yield return new WaitForSeconds(1f);
 
-            title1.ClickLoad();
+            loadData.ClickLoad(); //SpringScene 로드
         }
-        else
+        else // 메인메뉴로 이동
         {
             fader.FadeTo(loadToScene);
         }
@@ -60,24 +51,25 @@ public class Options : MonoBehaviour
     }
 
 
-
+    // 그만두기를 눌렀을 경우
     public void QuitGame()
     {
-        AudioManager.Instance.Play("OptionButton");
-        StartCoroutine(OutHere());
+        AudioManager.Instance.Play("OptionButton"); //효과음 재생
+        StartCoroutine(OutHere()); // OutHere 코루틴 시작
     }
 
 
+    // 메뉴 버튼을 눌렀을 경우
     public void GoToMenu()
     {
-        AudioManager.Instance.Play("OptionButton");
-        fader.FadeTo(loadToScene);
+        AudioManager.Instance.Play("OptionButton"); // 효과음 재생
+        fader.FadeTo(loadToScene); // 메인 메뉴로 이동
     }
     
 
     IEnumerator OutHere()
     {
-        fader.FadeTo();
+        fader.FadeTo(1f);
 
         yield return new WaitForSeconds(1f);
 

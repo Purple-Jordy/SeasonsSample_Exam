@@ -12,15 +12,16 @@ public class shakeBox : MonoBehaviour
     [SerializeField]
     private float bobingAmount = 1f;
 
-
     // 처음 위치 
     private Vector3 startPosition;
+
 
     private void Start()
     {
         // 초기화
         startPosition = transform.position;
     }
+
 
     private void Update()
     {
@@ -29,6 +30,8 @@ public class shakeBox : MonoBehaviour
         transform.position = startPosition + Vector3.up * bobingAnimationPhase;
     }
 
+
+    //비활성화될 때마다 호출
     private void OnDisable()
     {
         transform.position = startPosition;

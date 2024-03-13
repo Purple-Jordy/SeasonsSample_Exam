@@ -15,13 +15,16 @@ public class Interact : MonoBehaviour
 
     void Update()
     {
+        // 마우스를 클릭했을 경우
         if(Input.GetMouseButtonDown(0))
         {
             Vector2 rayPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(rayPosition, Vector2.zero, 10);
 
-            if(hit && hit.transform.tag == "Interactable")
+            // hit의 태그가 Interactable일 경우
+            if (hit && hit.transform.tag == "Interactable")
             {
+                //hit의 인터페이스 IInteractable의 interact(currentDisplay) 실행
                 hit.transform.GetComponent<IInteractable>().interact(currentDisplay);
             }
         }

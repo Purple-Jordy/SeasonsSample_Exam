@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZoomInObject : MonoBehaviour, IInteractable
+public class ZoomInObject : MonoBehaviour, IInteractable //인터페이스 상속
 {
 
-    //public BoxCollider2D bound; // Map bound
-    private Vector3 minBound;  // Map의 왼쪽 아래
-    private Vector3 maxBound; // Map의 오른쪽 위
-    private float halfWidth; // 카메라 가로의 절반
-    private float halfHeight; // 카메라 세로의 절반
-
-
-    // 카메라 사이즈
+    // 카메라 사이즈 변수
     [SerializeField]
     private float moveCamSize = 1f;
 
@@ -29,19 +22,21 @@ public class ZoomInObject : MonoBehaviour, IInteractable
     {
         if(displayImage.CurrentState != DisplayImage.State.zoom)
         {
-            //화면이 확대가 아니면 콜라이더 켜주기
+            //화면이 줌 상태가 아니면 콜라이더 켜주기
             this.GetComponent<BoxCollider2D>().enabled = true;
         }
 
     }
 
 
+    // 줌 오브젝트 클릭 시(인터페이스 상속)
     public void interact(DisplayImage currentDisplay)
     {
-
+        //카메라의 위치를 줌 오브젝트의 위치로 바꾼다
         Camera.main.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,
             Camera.main.transform.position.z);
 
+        // 카메라의 사이즈도 설정한 값으로 바꿔준다
         Camera.main.orthographicSize = moveCamSize; 
 
         //화면의 상태를 줌으로 바꾼다
@@ -53,5 +48,4 @@ public class ZoomInObject : MonoBehaviour, IInteractable
     }
 
 
-  
 }

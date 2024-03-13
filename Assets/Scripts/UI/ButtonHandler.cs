@@ -9,14 +9,13 @@ public class ButtonHandler : MonoBehaviour
 
     private float initialCamerSize;
     private Vector3 initialCamerPosition;
-    private Animator animator;
     
+
     private void Start()
     {
         currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
         initialCamerSize = Camera.main.orthographicSize;
         initialCamerPosition = Camera.main.transform.position;
-        animator = Camera.main.GetComponent<Animator>();
     }
 
 
@@ -50,13 +49,12 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator Right()
     {
+        //깜빡임 효과
         fader.FadeTo(0.1f);
 
         yield return new WaitForSeconds(0.1f);
 
         fader.InFade(0f);
-
-
 
 
         //만약 ChangedView 상태라면, 
@@ -72,7 +70,7 @@ public class ButtonHandler : MonoBehaviour
             Camera.main.orthographicSize = initialCamerSize;
             Camera.main.transform.position = initialCamerPosition;
         }
-        else
+        else // 현재 벽에 1을 더해준다
         {
             currentDisplay.CurrentWall = currentDisplay.CurrentWall + 1;
         }
@@ -86,13 +84,12 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator Left()
     {
+        //깜빡임 효과
         fader.FadeTo(0.1f);
 
         yield return new WaitForSeconds(0.1f);
 
         fader.InFade(0f);
-
-
 
 
         //만약 ChangedView 상태라면, 
@@ -108,26 +105,26 @@ public class ButtonHandler : MonoBehaviour
             Camera.main.orthographicSize = initialCamerSize;
             Camera.main.transform.position = initialCamerPosition;
         }
-        else
+        else // 현재 벽에서 1을 빼준다
         {
             currentDisplay.CurrentWall = currentDisplay.CurrentWall - 1;
         }
 
         //화면의 상태를 normal로 바꿔준다. 
         currentDisplay.CurrentState = DisplayImage.State.normal;
+
     }
 
 
 
     IEnumerator Back()
     {
+        //깜빡임 효과
         fader.FadeTo(0.1f);
 
         yield return new WaitForSeconds(0.1f);
 
         fader.InFade(0f);
-
-        
 
 
         //만약 현재 화면 상태가 줌 상태라면
@@ -149,18 +146,18 @@ public class ButtonHandler : MonoBehaviour
 
         //화면의 상태를 normal로 바꿔준다.
         currentDisplay.CurrentState = DisplayImage.State.normal;
+
     }
 
 
     IEnumerator Up()
     {
+        //깜빡임 효과
         fader.FadeTo(0.1f);
 
         yield return new WaitForSeconds(0.1f);
 
         fader.InFade(0f);
-
-        
 
 
         // 화면이 천장 상태라면 화면을 맞은 편 벽 이미지로 바꿔준다. 
@@ -179,13 +176,9 @@ public class ButtonHandler : MonoBehaviour
             //화면의 상태를 ceiling로 바꿔준다. 
             currentDisplay.CurrentState = DisplayImage.State.ceiling;
         }
+
     }
 
 
-
-
-
 }
-
-
 

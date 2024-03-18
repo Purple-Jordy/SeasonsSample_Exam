@@ -6,21 +6,18 @@ public class ObjectsManager : MonoBehaviour
 {
     private DisplayImage currentDisplay;
 
-    public GameObject[] objectsToManage;
-    //public GameObject[] UIRenderObjects;
+    public GameObject[] objectsToManage; //관리할 오브젝트 모음(배열)
 
 
     private void Start()
     {
         currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
-        //RenderUI();
-        
     }
 
 
     private void Update()
     {
-        ManageObjects();
+        ManageObjects(); //화면에 따른 오브젝트 켜주기
     }
 
 
@@ -28,7 +25,7 @@ public class ObjectsManager : MonoBehaviour
     {
         for(int i = 0; i < objectsToManage.Length; i++)
         {
-            //오브젝트 매니지 안에 있는 이름이 현재 화면과 같으면 
+            //오브젝트 매니지 안에 있는 이름이 현재 화면의 이미지(스프라이트)의 이름과 같으면 
             if (objectsToManage[i].name == currentDisplay.GetComponent<SpriteRenderer>().sprite.name)
             {
                 objectsToManage[i].SetActive(true); // 그 오브젝트를 켜준다~
@@ -39,14 +36,5 @@ public class ObjectsManager : MonoBehaviour
             }
         }
     }
-
-
-    /*void RenderUI()
-    {
-        for (int i = 0;i < UIRenderObjects.Length; i++)
-        {
-            UIRenderObjects[i].SetActive(false);
-        }
-    }*/
 
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadData : MonoBehaviour
 {
-    public static LoadData instance;
+    public static LoadData instance; //인스턴스화
     public string sceneName = "2SpringScene";
 
     private SaveAndLoad theSaveAndLoad;
@@ -23,7 +23,7 @@ public class LoadData : MonoBehaviour
     }
 
 
-    public void ClickLoad()
+    public void ClickLoad() //로드
     {
         Debug.Log("로드");
         StartCoroutine(LoadCoroutine());
@@ -31,28 +31,22 @@ public class LoadData : MonoBehaviour
 
 
     IEnumerator LoadCoroutine()
-    {
+    {        
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName); //비동기적으로 로딩
         
-        SceneManager.LoadScene(sceneName); // 싱글톤 아니였으면 여기서 Title 파괴되서 밑에 코드 실행 못함
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        operation.allowSceneActivation = false;
 
-
-        while (!operation.isDone) // 로딩이 끝나지 않았다면.. 여기 while문에다가 operation.progress 이용해 로딩화면 만들어줘도 된다.
+        while (!operation.isDone) // 로딩이 끝나지 않았다면.. 
         {
             yield return null;
         }
 
-        
 
-        theSaveAndLoad = FindObjectOfType<SaveAndLoad>(); // 다음 씬의 SaveAndLoad
+        // 다음 씬의 SaveAndLoad를 가져와서 데이터 로드
+        theSaveAndLoad = FindObjectOfType<SaveAndLoad>(); 
         theSaveAndLoad.LoadData();
        
 
-
-        operation.allowSceneActivation = true;
-
-        //gameObject.SetActive(false);  // "GameTitle"의 Canvas는 잠시 비활성화
     }
 
 

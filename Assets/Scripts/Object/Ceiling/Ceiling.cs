@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class Ceiling : MonoBehaviour, IInteractable // 인터페이스 상속
+public class Ceiling : MonoBehaviour, IInteractable 
 {
 
     private Animator animator;

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
+using System.IO; // c# 지원
 
 public class SaveAndLoad : MonoBehaviour
 {
     private SceneFader fader;
+
+    // SaveData 타입의 객체 인스턴스를 바로 생성해준 후 이 인스턴스의 멤버 변수에 저장할 데이터들을 저장할 것
     private SaveData saveData = new SaveData();
 
     private string SAVE_DATA_DIRECTORY;  // 저장할 폴더 경로
@@ -14,32 +16,35 @@ public class SaveAndLoad : MonoBehaviour
     private Inventory theInventory; // 인벤토리, 퀵슬롯 상태 가져오기 위해 필요
 
 
-
     void Start()
     {
         fader = FindObjectOfType<SceneFader>();
+
+        //파일읽기
 
         SAVE_DATA_DIRECTORY = Application.dataPath + "/Save/";
 
         if (!Directory.Exists(SAVE_DATA_DIRECTORY)) // 해당 경로가 존재하지 않는다면
             Directory.CreateDirectory(SAVE_DATA_DIRECTORY); // 폴더 생성(경로 생성)
+
     }
 
 
+    // 저장하기
     public void SaveData()
     {
-
+        
         theInventory = FindObjectOfType<Inventory>();
 
+        // 인벤토리 내용 삭제(새로운 내용 저장하기 위해)
         saveData.invenArrayNumber.Clear();
         saveData.invenItemName.Clear();
         saveData.invenItemImage.Clear();
         saveData.invenItemText.Clear();
-        //saveData.invenItemChangeText.Clear();
 
 
         // 인벤토리 정보 저장
-        Slot[] slots = theInventory.GetSlots();
+        Slot[] slots = theInventory.GetSlots(); //인벤토리 슬롯들의 배열 가져오기
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].item != null)
@@ -49,7 +54,7 @@ public class SaveAndLoad : MonoBehaviour
                 
                 saveData.invenItemImage.Add(slots[i].item.itemImage);
                 saveData.invenItemText.Add(slots[i].item.itemText);
-                //saveData.invenItemChangeText.Add(slots[i].item.changeText);
+
             }
         }
 
@@ -91,13 +96,14 @@ public class SaveAndLoad : MonoBehaviour
         // 최종 전체 저장
         string json = JsonUtility.ToJson(saveData); // 제이슨화
 
-        File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json);
+        File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json); // 저장
 
         Debug.Log("저장 완료");
         Debug.Log(json);
     }
 
 
+    //데이터 로드
     public void LoadData()
     {
         if (File.Exists(SAVE_DATA_DIRECTORY + SAVE_FILENAME))
@@ -106,17 +112,16 @@ public class SaveAndLoad : MonoBehaviour
             string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
+            // 게임을 맨 처음 시작할 때 한번만 나와야하는 효과(화면이나 게임 불러오기에서는 나오면 안된다.)
+            // 이미 나왔는지 체크하기 위해서 가장 먼저 로드.
             Spring.isPlay = saveData.boolList[0];
 
 
-            theInventory = FindObjectOfType<Inventory>();
-
-
             // 인벤토리 로드
+            theInventory = FindObjectOfType<Inventory>();
             for (int i = 0; i < saveData.invenItemName.Count; i++)
             {
                 theInventory.LoadToInven(saveData.invenArrayNumber[i], saveData.invenItemName[i]);
-
             }
 
 

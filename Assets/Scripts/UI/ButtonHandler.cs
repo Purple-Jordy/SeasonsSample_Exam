@@ -9,11 +9,12 @@ public class ButtonHandler : MonoBehaviour
 
     private float initialCamerSize;
     private Vector3 initialCamerPosition;
-    
+
 
     private void Start()
     {
-        currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        //currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        currentDisplay = FindObjectOfType<DisplayImage>();
         initialCamerSize = Camera.main.orthographicSize;
         initialCamerPosition = Camera.main.transform.position;
     }
@@ -50,11 +51,9 @@ public class ButtonHandler : MonoBehaviour
     IEnumerator Right()
     {
         //깜빡임 효과
-        fader.FadeTo(0.1f);
+        fader.InFade(0.1f);
 
         yield return new WaitForSeconds(0.1f);
-
-        fader.InFade(0f);
 
 
         //만약 ChangedView 상태라면, 
@@ -85,11 +84,9 @@ public class ButtonHandler : MonoBehaviour
     IEnumerator Left()
     {
         //깜빡임 효과
-        fader.FadeTo(0.1f);
+        fader.InFade(0.1f);
 
         yield return new WaitForSeconds(0.1f);
-
-        fader.InFade(0f);
 
 
         //만약 ChangedView 상태라면, 
@@ -120,11 +117,9 @@ public class ButtonHandler : MonoBehaviour
     IEnumerator Back()
     {
         //깜빡임 효과
-        fader.FadeTo(0.1f);
+        fader.InFade(0.1f);
 
         yield return new WaitForSeconds(0.1f);
-
-        fader.InFade(0f);
 
 
         //만약 현재 화면 상태가 줌 상태라면
@@ -153,11 +148,9 @@ public class ButtonHandler : MonoBehaviour
     IEnumerator Up()
     {
         //깜빡임 효과
-        fader.FadeTo(0.1f);
+        fader.InFade(0.1f);
 
         yield return new WaitForSeconds(0.1f);
-
-        fader.InFade(0f);
 
 
         // 화면이 천장 상태라면 화면을 맞은 편 벽 이미지로 바꿔준다. 

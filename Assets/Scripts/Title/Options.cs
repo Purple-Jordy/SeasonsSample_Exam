@@ -37,7 +37,7 @@ public class Options : MonoBehaviour
         // 이전의 씬이 메인 메뉴가 아닌 경우 (이전 씬이 springScene이거나 selectSpring이었을 경우)
         if (PlayerPrefs.GetString("previoudScene") != "1MainMenu")
         {
-            fader.FadeTo(1f);
+            fader.FadeTo();
 
             yield return new WaitForSeconds(1f);
 
@@ -69,7 +69,7 @@ public class Options : MonoBehaviour
 
     IEnumerator OutHere()
     {
-        fader.FadeTo(1f);
+        fader.FadeTo();
 
         yield return new WaitForSeconds(1f);
 

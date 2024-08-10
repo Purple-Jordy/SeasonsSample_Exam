@@ -20,13 +20,14 @@ public class ButtonBehaviour : MonoBehaviour
 
     private void Start()
     {
-        currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        //currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        currentDisplay = FindObjectOfType<DisplayImage>();
     }
 
 
     private void Update()
     {
-        // 화면 상태에 따라 버튼 보이기
+        // 화면 상태에 따라 버튼UI 오브젝트 보이기
         HideDisplay(); //버튼 숨기기
         Display(); //버튼 보이게 하기
     }
@@ -36,22 +37,20 @@ public class ButtonBehaviour : MonoBehaviour
     void HideDisplay() // 1. normal: back버튼만 숨기기  2. ChangeImage, zoom: Up 버튼만 숨기기
     {
         // 1. 화면 상태가 노말이고 버튼이 returnButton일 경우
-        if (currentDisplay.CurrentState == DisplayImage.State.normal && thisButtonId == ButtonID.returnButton)
-        {
-            GetComponent<Image>().color = new Color(GetComponent<Image>().color.r, GetComponent<Image>().color.g,
-                                                    GetComponent<Image>().color.b, 0);
-            GetComponent<Button>().enabled = false;
-            //this.transform.SetSiblingIndex(0);
+        if (currentDisplay.CurrentState == DisplayImage.State.normal 
+            && thisButtonId == ButtonID.returnButton)
+        {            
+            GetComponent<Image>().enabled = false;
+            GetComponent<Button>().enabled = false;            
         }
 
         // 2. 화면 상태가 ChangeImage 이고, 버튼이 Up일 경우
         if ((currentDisplay.CurrentState == DisplayImage.State.ChangedView || currentDisplay.CurrentState == DisplayImage.State.zoom) 
                 && thisButtonId == ButtonID.UpButton)
         {
-            GetComponent<Image>().color = new Color(GetComponent<Image>().color.r, GetComponent<Image>().color.g,
-                                                    GetComponent<Image>().color.b, 0);
+            GetComponent<Image>().enabled = false;
             GetComponent<Button>().enabled = false;
-            //this.transform.SetSiblingIndex(0);
+            
         }
     }
 
@@ -60,10 +59,10 @@ public class ButtonBehaviour : MonoBehaviour
     void Display() // 1. normal: back버튼 제외 다 보이기  2. ChangeImage, zoom: up 버튼 제외 다  3. ceiling : 다 보이기
     {
         // 1.현재 화면 상태가 normal이고, return 버튼일 경우
-        if (currentDisplay.CurrentState == DisplayImage.State.normal && !(thisButtonId == ButtonID.returnButton))
-        { 
-            GetComponent<Image>().color = new Color(GetComponent<Image>().color.r, GetComponent<Image>().color.g,
-                                                     GetComponent<Image>().color.b, 1);
+        if (currentDisplay.CurrentState == DisplayImage.State.normal 
+            && !(thisButtonId == ButtonID.returnButton))
+        {
+            GetComponent<Image>().enabled = true;
             GetComponent<Button>().enabled = true;
         }
 
@@ -71,16 +70,14 @@ public class ButtonBehaviour : MonoBehaviour
         if ((currentDisplay.CurrentState == DisplayImage.State.ChangedView || currentDisplay.CurrentState == DisplayImage.State.zoom)
                 && !(thisButtonId == ButtonID.UpButton))
         {
-            GetComponent<Image>().color = new Color(GetComponent<Image>().color.r, GetComponent<Image>().color.g,
-                                                    GetComponent<Image>().color.b, 1);
+            GetComponent<Image>().enabled = true;
             GetComponent<Button>().enabled = true;
         }
 
        //3. ceiling 상태면 다 보이기
        if(currentDisplay.CurrentState == DisplayImage.State.ceiling)
        {
-            GetComponent<Image>().color = new Color(GetComponent<Image>().color.r, GetComponent<Image>().color.g,
-                                                    GetComponent<Image>().color.b, 1);
+            GetComponent<Image>().enabled = true;
             GetComponent<Button>().enabled = true;
        }
 

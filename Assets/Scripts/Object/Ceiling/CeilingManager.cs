@@ -6,19 +6,19 @@ public class CeilingManager : MonoBehaviour
 {
     public GameObject ceilingPhoto;
 
-    private DisplayImage Display;
+    private DisplayImage display;
 
 
     void Start()
     {
-        Display = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        display = FindObjectOfType<DisplayImage>();
     }
 
 
     void Update()
     {
         // 천장 상태일 때만 오브젝트 켜주기 
-        if (Display.CurrentState == DisplayImage.State.ceiling)
+        if (display.CurrentState == DisplayImage.State.ceiling)
         {
             ceilingPhoto.SetActive(true);
         }

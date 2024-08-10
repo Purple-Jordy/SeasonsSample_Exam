@@ -96,7 +96,8 @@ public class Inventory : MonoBehaviour
         {
 
             // 아이템이 선택된 상태에서 다른 아이템을 선택시, 이전에 선택한 아이템의 chooseItem을 false로 바꿔준다
-            if ((previousSelectedSlot != currentSelectedSlot) && previousSelectedSlot.GetComponent<Slot>().chooseItem == true)
+            if ((previousSelectedSlot != currentSelectedSlot) 
+                && previousSelectedSlot.GetComponent<Slot>().chooseItem == true)
             {
                 previousSelectedSlot.GetComponent<Slot>().chooseItem = false;
             }

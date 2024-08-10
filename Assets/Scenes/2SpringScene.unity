@@ -20667,6 +20667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 5320239517148870194}
+  time: 0.1
 --- !u!1 &1438186636
 GameObject:
   m_ObjectHideFlags: 0

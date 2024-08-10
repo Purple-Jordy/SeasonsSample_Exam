@@ -25,7 +25,7 @@ public class LoadData : MonoBehaviour
 
     public void ClickLoad() //로드
     {
-        Debug.Log("로드");
+        //Debug.Log("로드");
         StartCoroutine(LoadCoroutine());
     }
 

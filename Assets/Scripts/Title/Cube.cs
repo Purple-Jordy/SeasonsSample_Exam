@@ -78,7 +78,7 @@ public class Cube : MonoBehaviour
     IEnumerator startGame()
     {
 
-        fader.FadeTo(1f); // 페이드 아웃
+        fader.FadeTo(); // 페이드 아웃
 
         yield return new WaitForSeconds(1f);
 

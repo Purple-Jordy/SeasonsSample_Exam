@@ -14,7 +14,7 @@ public class ZoomInObject : MonoBehaviour, IInteractable //인터페이스 상속
 
     private void Start()
     {
-        displayImage = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        displayImage = FindObjectOfType<DisplayImage>();
     }
 
 
@@ -22,7 +22,7 @@ public class ZoomInObject : MonoBehaviour, IInteractable //인터페이스 상속
     {
         if(displayImage.CurrentState != DisplayImage.State.zoom)
         {
-            //화면이 줌 상태가 아니면 콜라이더 켜주기
+            //화면이 줌 상태가 아니면 콜라이더 켜주기. (꺼진 콜라이더 다시 켜주기)            
             this.GetComponent<BoxCollider2D>().enabled = true;
         }
 

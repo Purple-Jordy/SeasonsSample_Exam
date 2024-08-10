@@ -43,7 +43,7 @@ public class Spring : MonoBehaviour
         
         if (isPlay == true)
         {
-            fader.InFade(0.2f); // 화면 밝게 
+            fader.InFade(0.1f); // 화면 밝게 
             coll.enabled = false; // 터치 가능
             Camera.main.GetComponent<shakeBox>().enabled = false; //셰이크 박스 꺼주기
             fadeAnim.enabled = false; //페이드 이미지 꺼주기

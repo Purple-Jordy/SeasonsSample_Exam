@@ -85,26 +85,25 @@ public class SceneFader : MonoBehaviour
     }
 
 
-    // fadeDelay동안 페이드아웃
-    public void FadeTo(float fadeDelay)
+    // 씬로드 없는 페이드 아웃 버전
+    public void FadeTo()
     {
-        StartCoroutine(FadeOut(fadeDelay));
+        StartCoroutine(FadeOut());
     }
 
 
-    // 씬 시작시 fadeDelay동안 페이드아웃 효과 
-    IEnumerator FadeOut(float fadeDelay)
+    IEnumerator FadeOut()
     {
 
-        float t = Img.color.a; // 현재 화면의 값
+        float t = Img.color.a; // 현재 화면의 투명도
 
-        while (t < fadeDelay)
+        while (t < 1) // 검정화면이 될 때까지
         {
             t += Time.deltaTime; // 시간의 흐름에 따라 t값을 증가
-            float a = curve.Evaluate(t);
-            Img.color = new Color(0, 0, 0, a);
+            float a = curve.Evaluate(t); //t에 해당하는 알파값 계산
+            Img.color = new Color(0, 0, 0, a); //새로운 알파값으로 이미지 색상 설정
 
-            yield return 0;
+            yield return 0; // 다음 프레임까지 대기
         }
 
     }

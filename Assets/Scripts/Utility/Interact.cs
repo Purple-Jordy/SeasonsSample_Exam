@@ -9,7 +9,7 @@ public class Interact : MonoBehaviour
 
     void Start()
     {
-        currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        currentDisplay = FindObjectOfType<DisplayImage>();
     }
 
 

@@ -11,7 +11,7 @@ public class ObjectsManager : MonoBehaviour
 
     private void Start()
     {
-        currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
+        currentDisplay = FindObjectOfType<DisplayImage>();
     }
 
 
